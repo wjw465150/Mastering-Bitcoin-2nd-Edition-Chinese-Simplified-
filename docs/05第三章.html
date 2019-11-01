@@ -1,0 +1,2352 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Bitcoin Core：参考实现 · Groovy_Recipes(Groovy食谱)</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="WS">
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="05第三章.html" />
+    
+    
+    <link rel="prev" href="04第二章.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="01前言.html">
+            
+                <a href="01前言.html#前言">
+            
+                    
+                    写在开始
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="01前言.html">
+            
+                <a href="01前言.html#写作比特币的书">
+            
+                    
+                    写作比特币的书
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="01前言.html">
+            
+                <a href="01前言.html#目标读者">
+            
+                    
+                    目标读者
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="01前言.html">
+            
+                <a href="01前言.html#为什么封面上有只虫子">
+            
+                    
+                    为什么封面上有只虫子
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="02术语.html">
+            
+                <a href="02术语.html#快速术语表">
+            
+                    
+                    快速术语表
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="03第一章.html">
+            
+                <a href="03第一章.html#概述">
+            
+                    
+                    概述
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1" data-path="03第一章.html">
+            
+                <a href="03第一章.html#什么是比特币">
+            
+                    
+                    什么是比特币
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2" data-path="03第一章.html">
+            
+                <a href="03第一章.html#比特币的历史">
+            
+                    
+                    比特币的历史
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.3" data-path="03第一章.html">
+            
+                <a href="03第一章.html#比特币的用法，用户和故事">
+            
+                    
+                    比特币的用法，用户和故事
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.4" data-path="03第一章.html">
+            
+                <a href="03第一章.html#开始">
+            
+                    
+                    开始
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="04第二章.html">
+            
+                <a href="04第二章.html#比特币如何运转">
+            
+                    
+                    比特币如何运转
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.1" data-path="04第二章.html">
+            
+                <a href="04第二章.html#交易，区块，挖矿和区块链">
+            
+                    
+                    交易，区块，挖矿和区块链
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2" data-path="04第二章.html">
+            
+                <a href="04第二章.html#比特币交易">
+            
+                    
+                    比特币交易
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.3" data-path="04第二章.html">
+            
+                <a href="04第二章.html#创建一笔交易">
+            
+                    
+                    创建一笔交易
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.4" data-path="04第二章.html">
+            
+                <a href="04第二章.html#比特币挖矿">
+            
+                    
+                    比特币挖矿
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.5" data-path="04第二章.html">
+            
+                <a href="04第二章.html#挖掘区块中的交易">
+            
+                    
+                    挖掘区块中的交易
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.6" data-path="04第二章.html">
+            
+                <a href="04第二章.html#花费比特币">
+            
+                    
+                    花费比特币
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="05第三章.html">
+            
+                <a href="05第三章.html#Bitcoin Core：参考实现">
+            
+                    
+                    Bitcoin Core：参考实现
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1.1" data-path="05第三章.html">
+            
+                <a href="05第三章.html#比特币开发环境">
+            
+                    
+                    比特币开发环境
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.2" data-path="05第三章.html">
+            
+                <a href="05第三章.html#通过源代码编译Bitcoin Core">
+            
+                    
+                    通过源代码编译Bitcoin Core
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.3" data-path="05第三章.html">
+            
+                <a href="05第三章.html#运行Bitcoin Core节点">
+            
+                    
+                    运行Bitcoin Core节点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.4" data-path="05第三章.html">
+            
+                <a href="05第三章.html#Bitcoin Core API">
+            
+                    
+                    Bitcoin Core API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.1.5" data-path="05第三章.html">
+            
+                <a href="05第三章.html#可选的客户端、程序库和工具包">
+            
+                    
+                    可选的客户端、程序库和工具包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="06第四章.html">
+            
+                <a href="06第四章.html#密钥和地址">
+            
+                    
+                    密钥和地址
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1.1" data-path="06第四章.html">
+            
+                <a href="06第四章.html#简介">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.1.2" data-path="06第四章.html">
+            
+                <a href="06第四章.html#比特币地址">
+            
+                    
+                    比特币地址
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.1.3" data-path="06第四章.html">
+            
+                <a href="06第四章.html#用 C++ 实现密钥和地址">
+            
+                    
+                    用 C++ 实现密钥和地址
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.1.4" data-path="06第四章.html">
+            
+                <a href="06第四章.html#用 Python 实现密钥和地址">
+            
+                    
+                    用 Python 实现密钥和地址
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.1.5" data-path="06第四章.html">
+            
+                <a href="06第四章.html#高级的密钥和地址">
+            
+                    
+                    高级的密钥和地址
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="07第五章.html">
+            
+                <a href="07第五章.html#钱包">
+            
+                    
+                    钱包
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1.1" data-path="07第五章.html">
+            
+                <a href="07第五章.html#钱包技术概述">
+            
+                    
+                    钱包技术概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8.1.2" data-path="07第五章.html">
+            
+                <a href="07第五章.html#钱包技术细节">
+            
+                    
+                    钱包技术细节
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="9.1" data-path="08第六章.html">
+            
+                <a href="08第六章.html#交易">
+            
+                    
+                    交易
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1.1" data-path="08第六章.html">
+            
+                <a href="08第六章.html#简介">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.2" data-path="08第六章.html">
+            
+                <a href="08第六章.html#交易详情">
+            
+                    
+                    交易详情
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.3" data-path="08第六章.html">
+            
+                <a href="08第六章.html#交易的输出和输入">
+            
+                    
+                    交易的输出和输入
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.4" data-path="08第六章.html">
+            
+                <a href="08第六章.html#交易脚本和脚本语言">
+            
+                    
+                    交易脚本和脚本语言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.5" data-path="08第六章.html">
+            
+                <a href="08第六章.html#数字签名 (ECDSA">
+            
+                    
+                    数字签名 (ECDSA)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.6" data-path="08第六章.html">
+            
+                <a href="08第六章.html#比特币地址，余额和其他抽象">
+            
+                    
+                    比特币地址，余额和其他抽象
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="10.1" data-path="09第七章.html">
+            
+                <a href="09第七章.html#高级交易和脚本">
+            
+                    
+                    高级交易和脚本
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.1.1" data-path="09第七章.html">
+            
+                <a href="09第七章.html#概述">
+            
+                    
+                    概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.2" data-path="09第七章.html">
+            
+                <a href="09第七章.html#多重签名">
+            
+                    
+                    多重签名
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.3" data-path="09第七章.html">
+            
+                <a href="09第七章.html#支付到脚本哈希 Pay-to-Script-Hash (P2SH">
+            
+                    
+                    支付到脚本哈希 Pay-to-Script-Hash (P2SH)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.4" data-path="09第七章.html">
+            
+                <a href="09第七章.html#数据记录输出 (RETURN">
+            
+                    
+                    数据记录输出 (RETURN)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.5" data-path="09第七章.html">
+            
+                <a href="09第七章.html#时间锁 Timelocks">
+            
+                    
+                    时间锁 Timelocks
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.6" data-path="09第七章.html">
+            
+                <a href="09第七章.html#流程控制脚本（条件语句）">
+            
+                    
+                    流程控制脚本（条件语句）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.7" data-path="09第七章.html">
+            
+                <a href="09第七章.html#复杂脚本示例">
+            
+                    
+                    复杂脚本示例
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="10.1.8" data-path="09第七章.html">
+            
+                <a href="09第七章.html#隔离见证 Segregated Witness">
+            
+                    
+                    隔离见证 Segregated Witness
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="11.1" data-path="10第八章.html">
+            
+                <a href="10第八章.html#比特币网络">
+            
+                    
+                    比特币网络
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.1.1" data-path="10第八章.html">
+            
+                <a href="10第八章.html#点对点网络架构">
+            
+                    
+                    点对点网络架构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.2" data-path="10第八章.html">
+            
+                <a href="10第八章.html#节点类型和角色">
+            
+                    
+                    节点类型和角色
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.3" data-path="10第八章.html">
+            
+                <a href="10第八章.html#扩展比特币网络">
+            
+                    
+                    扩展比特币网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.4" data-path="10第八章.html">
+            
+                <a href="10第八章.html#比特币中继网络">
+            
+                    
+                    比特币中继网络
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.5" data-path="10第八章.html">
+            
+                <a href="10第八章.html#网络发现">
+            
+                    
+                    网络发现
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.6" data-path="10第八章.html">
+            
+                <a href="10第八章.html#完整节点">
+            
+                    
+                    完整节点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.7" data-path="10第八章.html">
+            
+                <a href="10第八章.html#交换“库存”">
+            
+                    
+                    交换“库存”
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.8" data-path="10第八章.html">
+            
+                <a href="10第八章.html#简单支付验证（SPV）">
+            
+                    
+                    简单支付验证（SPV）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.9" data-path="10第八章.html">
+            
+                <a href="10第八章.html#布隆过滤器 布隆 Filters">
+            
+                    
+                    布隆过滤器 布隆 Filters
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.10" data-path="10第八章.html">
+            
+                <a href="10第八章.html#SPV节点如何使用布隆过滤器">
+            
+                    
+                    SPV节点如何使用布隆过滤器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.11" data-path="10第八章.html">
+            
+                <a href="10第八章.html#SPV节点和隐私">
+            
+                    
+                    SPV节点和隐私
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.12" data-path="10第八章.html">
+            
+                <a href="10第八章.html#加密和认证的连接">
+            
+                    
+                    加密和认证的连接
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="11.1.13" data-path="10第八章.html">
+            
+                <a href="10第八章.html#交易池">
+            
+                    
+                    交易池
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="12.1" data-path="11第九章.html">
+            
+                <a href="11第九章.html#区块链">
+            
+                    
+                    区块链
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="12.1.1" data-path="11第九章.html">
+            
+                <a href="11第九章.html#简介">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="12.1.2" data-path="11第九章.html">
+            
+                <a href="11第九章.html#区块的结构">
+            
+                    
+                    区块的结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="12.1.3" data-path="11第九章.html">
+            
+                <a href="11第九章.html#区块头">
+            
+                    
+                    区块头
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="12.1.4" data-path="11第九章.html">
+            
+                <a href="11第九章.html#区块标识符：区块头的哈希值和区块高度">
+            
+                    
+                    区块标识符：区块头的哈希值和区块高度
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="12.1.5" data-path="11第九章.html">
+            
+                <a href="11第九章.html#创世区块">
+            
+                    
+                    创世区块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="12.1.6" data-path="11第九章.html">
+            
+                <a href="11第九章.html#在区块链中链接区块">
+            
+                    
+                    在区块链中链接区块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="12.1.7" data-path="11第九章.html">
+            
+                <a href="11第九章.html#默克尔树 Merkle Trees">
+            
+                    
+                    默克尔树 Merkle Trees
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="12.1.8" data-path="11第九章.html">
+            
+                <a href="11第九章.html#Merkle 树和简单支付验证节点">
+            
+                    
+                    Merkle 树和简单支付验证节点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="12.1.9" data-path="11第九章.html">
+            
+                <a href="11第九章.html#比特币的测试区块链">
+            
+                    
+                    比特币的测试区块链
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="12.1.10" data-path="11第九章.html">
+            
+                <a href="11第九章.html#使用测试区块链进行开发">
+            
+                    
+                    使用测试区块链进行开发
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="13.1" data-path="12第十章.html">
+            
+                <a href="12第十章.html#挖矿和共识">
+            
+                    
+                    挖矿和共识
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="13.1.1" data-path="12第十章.html">
+            
+                <a href="12第十章.html#概述">
+            
+                    
+                    概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.2" data-path="12第十章.html">
+            
+                <a href="12第十章.html#去中心化共识（Decentralized Consensus）">
+            
+                    
+                    去中心化共识（Decentralized Consensus）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.3" data-path="12第十章.html">
+            
+                <a href="12第十章.html#独立交易验证">
+            
+                    
+                    独立交易验证
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.4" data-path="12第十章.html">
+            
+                <a href="12第十章.html#挖矿节点">
+            
+                    
+                    挖矿节点
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.5" data-path="12第十章.html">
+            
+                <a href="12第十章.html#将交易聚合到区块中">
+            
+                    
+                    将交易聚合到区块中
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.6" data-path="12第十章.html">
+            
+                <a href="12第十章.html#构建区块头">
+            
+                    
+                    构建区块头
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.7" data-path="12第十章.html">
+            
+                <a href="12第十章.html#挖掘区块">
+            
+                    
+                    挖掘区块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.8" data-path="12第十章.html">
+            
+                <a href="12第十章.html#成功挖到区块">
+            
+                    
+                    成功挖到区块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.9" data-path="12第十章.html">
+            
+                <a href="12第十章.html#验证新的区块">
+            
+                    
+                    验证新的区块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.10" data-path="12第十章.html">
+            
+                <a href="12第十章.html#组装和选择区块的链">
+            
+                    
+                    组装和选择区块的链
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.11" data-path="12第十章.html">
+            
+                <a href="12第十章.html#挖矿和哈希竞赛 Mining and the Hashing Race">
+            
+                    
+                    挖矿和哈希竞赛 Mining and the Hashing Race
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.12" data-path="12第十章.html">
+            
+                <a href="12第十章.html#共识攻击">
+            
+                    
+                    共识攻击
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.13" data-path="12第十章.html">
+            
+                <a href="12第十章.html#共识规则的改变">
+            
+                    
+                    共识规则的改变
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.14" data-path="12第十章.html">
+            
+                <a href="12第十章.html#使用区块版本的软分叉信号">
+            
+                    
+                    使用区块版本的软分叉信号
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="13.1.15" data-path="12第十章.html">
+            
+                <a href="12第十章.html#共识软件开发">
+            
+                    
+                    共识软件开发
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="14.1" data-path="13第十一章.html">
+            
+                <a href="13第十一章.html#比特币的安全">
+            
+                    
+                    比特币的安全
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="14.1.1" data-path="13第十一章.html">
+            
+                <a href="13第十一章.html#安全原则">
+            
+                    
+                    安全原则
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.1.2" data-path="13第十一章.html">
+            
+                <a href="13第十一章.html#用户安全最佳实践">
+            
+                    
+                    用户安全最佳实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="14.1.3" data-path="13第十一章.html">
+            
+                <a href="13第十一章.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="15.1" data-path="14第十二章.html">
+            
+                <a href="14第十二章.html#区块链应用">
+            
+                    
+                    区块链应用
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="15.1.1" data-path="14第十二章.html">
+            
+                <a href="14第十二章.html#简介">
+            
+                    
+                    简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="15.1.2" data-path="14第十二章.html">
+            
+                <a href="14第十二章.html#构建模块（原语）">
+            
+                    
+                    构建模块（原语）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="15.1.3" data-path="14第十二章.html">
+            
+                <a href="14第十二章.html#构建模块的应用">
+            
+                    
+                    构建模块的应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="15.1.4" data-path="14第十二章.html">
+            
+                <a href="14第十二章.html#彩色币">
+            
+                    
+                    彩色币
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="15.1.5" data-path="14第十二章.html">
+            
+                <a href="14第十二章.html#合约币 Counterparty">
+            
+                    
+                    合约币 Counterparty
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="15.1.6" data-path="14第十二章.html">
+            
+                <a href="14第十二章.html#支付通道和状态通道 Payment Channels and State Channels">
+            
+                    
+                    支付通道和状态通道 Payment Channels and State Channels
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="15.1.7" data-path="14第十二章.html">
+            
+                <a href="14第十二章.html#路由支付通道（闪电网络）">
+            
+                    
+                    路由支付通道（闪电网络）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="15.1.8" data-path="14第十二章.html">
+            
+                <a href="14第十二章.html#总结">
+            
+                    
+                    总结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Bitcoin Core：参考实现</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="bitcoin-core&#xFF1A;&#x53C2;&#x8003;&#x5B9E;&#x73B0;"><a name="bitcoin-core&#xFF1A;&#x53C2;&#x8003;&#x5B9E;&#x73B0;" class="anchor-navigation-ex-anchor" href="#bitcoin-core&#xFF1A;&#x53C2;&#x8003;&#x5B9E;&#x73B0;"><i class="fa fa-link" aria-hidden="true"></i></a>Bitcoin Core&#xFF1A;&#x53C2;&#x8003;&#x5B9E;&#x73B0;</h2>
+<p>&#x6BD4;&#x7279;&#x5E01;&#x662F;&#x5F00;&#x6E90;&#x7684;&#x9879;&#x76EE;&#xFF0C;&#x6E90;&#x4EE3;&#x7801;&#x4F7F;&#x7528;MIT&#x6388;&#x6743;&#x65B9;&#x5F0F;&#xFF0C;&#x53EF;&#x4EE5;&#x514D;&#x8D39;&#x4E0B;&#x8F7D;&#x548C;&#x4F7F;&#x7528;&#x3002;&#x5F00;&#x6E90;&#x4E0D;&#x4EC5;&#x610F;&#x5473;&#x7740;&#x514D;&#x8D39;&#x4F7F;&#x7528;&#xFF0C;&#x4E5F;&#x610F;&#x5473;&#x7740;&#x6BD4;&#x7279;&#x5E01;&#x662F;&#x7531;&#x5F00;&#x6E90;&#x5FD7;&#x613F;&#x8005;&#x793E;&#x533A;&#x5F00;&#x53D1;&#x7684;&#x3002;&#x8D77;&#x521D;&#xFF0C;&#x8FD9;&#x4E2A;&#x793E;&#x533A;&#x53EA;&#x5305;&#x62EC;&#x4E2D;&#x672C;&#x806A;&#xFF08;Satoshi Nakamoto&#xFF09;&#x3002;&#x5230;2016&#x5E74;&#xFF0C;&#x6BD4;&#x7279;&#x5E01;&#x7684;&#x6E90;&#x4EE3;&#x7801;&#x62E5;&#x6709;&#x8D85;&#x8FC7;400&#x4E2A;&#x8D21;&#x732E;&#x8005;&#xFF0C;&#x5927;&#x7EA6;&#x6709;&#x5341;&#x51E0;&#x4F4D;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x51E0;&#x4E4E;&#x5168;&#x804C;&#x5DE5;&#x4F5C;&#xFF0C;&#x53E6;&#x5916;&#x51E0;&#x5341;&#x4EBA;&#x517C;&#x804C;&#x5DE5;&#x4F5C;&#x3002;&#x4EFB;&#x4F55;&#x4EBA;&#x90FD;&#x53EF;&#x4EE5;&#x8D21;&#x732E;&#x4EE3;&#x7801;&#xFF0C;&#x5305;&#x62EC;&#x4F60;&#xFF01;</p>
+<p>&#x5F53;&#x4E2D;&#x672C;&#x806A;&#x521B;&#x9020;&#x6BD4;&#x7279;&#x5E01;&#x65F6;&#xFF0C;&#x8BE5;&#x8F6F;&#x4EF6;&#x5B9E;&#x9645;&#x4E0A;&#x5DF2;&#x7ECF;&#x5728;&#x767D;&#x76AE;&#x4E66;&#x51FA;&#x73B0;&#x4E4B;&#x524D;&#x5B8C;&#x6210;&#x3002;&#x5728;&#x5199;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x4E4B;&#x524D;&#xFF0C;&#x4E2D;&#x672C;&#x806A;&#x60F3;&#x786E;&#x4FDD;&#x5B83;&#x53EF;&#x4EE5;&#x5DE5;&#x4F5C;&#x3002;&#x7B2C;&#x4E00;&#x7248;&#x5B9E;&#x73B0;&#x5DF2;&#x7ECF;&#x8FDB;&#x884C;&#x4E86;&#x5927;&#x91CF;&#x4FEE;&#x6539;&#x548C;&#x6539;&#x8FDB;&#xFF0C;&#x5DF2;&#x7ECF;&#x53D1;&#x5C55;&#x6210;&#x4E3A;&#x6240;&#x8C13;&#x7684;<em>Bitcoin Core&#xFF08;Bitcoin Core&#xFF09;</em>&#xFF0C;&#x4EE5;&#x533A;&#x522B;&#x4E8E;&#x5176;&#x4ED6;&#x517C;&#x5BB9;&#x7684;&#x5B9E;&#x73B0;&#x3002;Bitcoin Core&#x662F;&#x6BD4;&#x7279;&#x5E01;&#x7CFB;&#x7EDF;&#x7684;&#x53C2;&#x8003;&#x5B9E;&#x73B0;&#xFF0C;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x5B83;&#x662F;&#x5173;&#x4E8E;&#x5982;&#x4F55;&#x5B9E;&#x65BD;&#x6BCF;&#x4E00;&#x90E8;&#x5206;&#x6280;&#x672F;&#x7684;&#x6743;&#x5A01;&#x53C2;&#x8003;&#x3002;Bitcoin Core&#x5B9E;&#x73B0;&#x4E86;&#x6BD4;&#x7279;&#x5E01;&#x7684;&#x5404;&#x4E2A;&#x65B9;&#x9762;&#xFF0C;&#x5305;&#x62EC;&#x94B1;&#x5305;&#xFF0C;&#x4EA4;&#x6613;&#x548C;&#x533A;&#x5757;&#x9A8C;&#x8BC1;&#x5F15;&#x64CE;&#xFF0C;&#x4EE5;&#x53CA;&#x70B9;&#x5BF9;&#x70B9;&#x6BD4;&#x7279;&#x5E01;&#x7F51;&#x7EDC;&#x4E2D;&#x7684;&#x5B8C;&#x6574;&#x7F51;&#x7EDC;&#x8282;&#x70B9;&#x3002;</p>
+<hr>
+<h2 id="-&#x5C3D;&#x7BA1;bitcoin-core&#x5305;&#x542B;&#x94B1;&#x5305;&#x7684;&#x53C2;&#x8003;&#x5B9E;&#x73B0;&#xFF0C;&#x4F46;&#x5E76;&#x4E0D;&#x5EFA;&#x8BAE;&#x5C06;&#x5176;&#x7528;&#x4F5C;&#x7528;&#x6237;&#x6216;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E2D;&#x7684;&#x94B1;&#x5305;&#x3002;&#x5EFA;&#x8BAE;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x4F7F;&#x7528;&#x73B0;&#x4EE3;&#x6807;&#x51C6;&#xFF08;&#x5982;bip-39&#x548C;bip-32&#xFF09;&#x5F00;&#x53D1;&#x94B1;&#x5305;&#xFF08;&#x8BF7;&#x53C2;&#x9605;mnemoniccodewords&#x548C;hdwallets&#xFF09;&#x3002;-bip&#x4EE3;&#x8868;bitcoin&#x6539;&#x8FDB;&#x5EFA;&#x8BAE;&#x3002;-"><a name="-&#x5C3D;&#x7BA1;bitcoin-core&#x5305;&#x542B;&#x94B1;&#x5305;&#x7684;&#x53C2;&#x8003;&#x5B9E;&#x73B0;&#xFF0C;&#x4F46;&#x5E76;&#x4E0D;&#x5EFA;&#x8BAE;&#x5C06;&#x5176;&#x7528;&#x4F5C;&#x7528;&#x6237;&#x6216;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E2D;&#x7684;&#x94B1;&#x5305;&#x3002;&#x5EFA;&#x8BAE;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x4F7F;&#x7528;&#x73B0;&#x4EE3;&#x6807;&#x51C6;&#xFF08;&#x5982;bip-39&#x548C;bip-32&#xFF09;&#x5F00;&#x53D1;&#x94B1;&#x5305;&#xFF08;&#x8BF7;&#x53C2;&#x9605;mnemoniccodewords&#x548C;hdwallets&#xFF09;&#x3002;-bip&#x4EE3;&#x8868;bitcoin&#x6539;&#x8FDB;&#x5EFA;&#x8BAE;&#x3002;-" class="anchor-navigation-ex-anchor" href="#-&#x5C3D;&#x7BA1;bitcoin-core&#x5305;&#x542B;&#x94B1;&#x5305;&#x7684;&#x53C2;&#x8003;&#x5B9E;&#x73B0;&#xFF0C;&#x4F46;&#x5E76;&#x4E0D;&#x5EFA;&#x8BAE;&#x5C06;&#x5176;&#x7528;&#x4F5C;&#x7528;&#x6237;&#x6216;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E2D;&#x7684;&#x94B1;&#x5305;&#x3002;&#x5EFA;&#x8BAE;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x4F7F;&#x7528;&#x73B0;&#x4EE3;&#x6807;&#x51C6;&#xFF08;&#x5982;bip-39&#x548C;bip-32&#xFF09;&#x5F00;&#x53D1;&#x94B1;&#x5305;&#xFF08;&#x8BF7;&#x53C2;&#x9605;mnemoniccodewords&#x548C;hdwallets&#xFF09;&#x3002;-bip&#x4EE3;&#x8868;bitcoin&#x6539;&#x8FDB;&#x5EFA;&#x8BAE;&#x3002;-"><i class="fa fa-link" aria-hidden="true"></i></a>&gt;  &#x5C3D;&#x7BA1;Bitcoin Core&#x5305;&#x542B;&#x94B1;&#x5305;&#x7684;&#x53C2;&#x8003;&#x5B9E;&#x73B0;&#xFF0C;&#x4F46;&#x5E76;&#x4E0D;&#x5EFA;&#x8BAE;&#x5C06;&#x5176;&#x7528;&#x4F5C;&#x7528;&#x6237;&#x6216;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E2D;&#x7684;&#x94B1;&#x5305;&#x3002;&#x5EFA;&#x8BAE;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x4F7F;&#x7528;&#x73B0;&#x4EE3;&#x6807;&#x51C6;&#xFF08;&#x5982;BIP-39&#x548C;BIP-32&#xFF09;&#x5F00;&#x53D1;&#x94B1;&#x5305;&#xFF08;&#x8BF7;&#x53C2;&#x9605;[mnemonic_code_words]&#x548C;[hd_wallets]&#xFF09;&#x3002; BIP&#x4EE3;&#x8868;Bitcoin&#x6539;&#x8FDB;&#x5EFA;&#x8BAE;&#x3002; </h2>
+<p><a href="https://github.com/wjw465150/bitcoin_book_2nd/blob/master/&#x7B2C;&#x4E09;&#x7AE0;.asciidoc#bitcoin_core_architecture" target="_blank">Bitcoin Core architecture (Source: Eric Lombrozo)</a> &#x5C55;&#x793A;&#x4E86;Bitcoin Core&#x7684;&#x67B6;&#x6784;&#x3002;</p>
+<p><img src="assets/mbc2_0301.png" alt="Bitcoin Core Architecture"></p>
+<p>Figure 1. Bitcoin Core architecture (Source: Eric Lombrozo)</p>
+<h3 id="&#x6BD4;&#x7279;&#x5E01;&#x5F00;&#x53D1;&#x73AF;&#x5883;"><a name="&#x6BD4;&#x7279;&#x5E01;&#x5F00;&#x53D1;&#x73AF;&#x5883;" class="anchor-navigation-ex-anchor" href="#&#x6BD4;&#x7279;&#x5E01;&#x5F00;&#x53D1;&#x73AF;&#x5883;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6BD4;&#x7279;&#x5E01;&#x5F00;&#x53D1;&#x73AF;&#x5883;</h3>
+<p>&#x5982;&#x679C;&#x4F60;&#x662F;&#x4E00;&#x540D;&#x5F00;&#x53D1;&#x8005;&#xFF0C;&#x4F60;&#x9700;&#x8981;&#x5EFA;&#x7ACB;&#x4E00;&#x4E2A;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#xFF0C;&#x5176;&#x4E2D;&#x5305;&#x542B;&#x7528;&#x4E8E;&#x7F16;&#x5199;&#x6BD4;&#x7279;&#x5E01;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x6240;&#x6709;&#x5DE5;&#x5177;&#xFF0C;&#x5E93;&#x548C;&#x652F;&#x6301;&#x8F6F;&#x4EF6;&#x3002;&#x5728;&#x8FD9;&#x4E2A;&#x9AD8;&#x5EA6;&#x6280;&#x672F;&#x6027;&#x7684;&#x7AE0;&#x8282;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x4E00;&#x6B65;&#x4E00;&#x6B65;&#x5730;&#x4ECB;&#x7ECD;&#x8BE5;&#x8FC7;&#x7A0B;&#x3002;&#x5982;&#x679C;&#x89C9;&#x5F97;&#x8FC7;&#x4E8E;&#x590D;&#x6742;&#xFF08;&#x5E76;&#x4E14;&#x4F60;&#x5B9E;&#x9645;&#x4E0A;&#x6CA1;&#x6709;&#x8BBE;&#x7F6E;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#xFF09;&#xFF0C;&#x8BF7;&#x968F;&#x610F;&#x8DF3;&#x5230;&#x4E0B;&#x4E00;&#x7AE0;&#xFF0C;&#x6280;&#x672F;&#x6027;&#x8F83;&#x5F31;&#x7684;&#x7AE0;&#x8282;&#x3002;</p>
+<h3 id="&#x901A;&#x8FC7;&#x6E90;&#x4EE3;&#x7801;&#x7F16;&#x8BD1;bitcoin-core"><a name="&#x901A;&#x8FC7;&#x6E90;&#x4EE3;&#x7801;&#x7F16;&#x8BD1;bitcoin-core" class="anchor-navigation-ex-anchor" href="#&#x901A;&#x8FC7;&#x6E90;&#x4EE3;&#x7801;&#x7F16;&#x8BD1;bitcoin-core"><i class="fa fa-link" aria-hidden="true"></i></a>&#x901A;&#x8FC7;&#x6E90;&#x4EE3;&#x7801;&#x7F16;&#x8BD1;Bitcoin Core</h3>
+<p>&#x53EF;&#x4EE5;&#x4ECE;Github&#x4E0B;&#x8F7D;Bitcoin Core&#x7684;&#x6E90;&#x4EE3;&#x7801;&#x538B;&#x7F29;&#x5305;&#x6216;&#x514B;&#x9686;&#x9879;&#x76EE;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5728; <a href="https://bitcoincore.org/bin/" target="_blank">Bitcoin Core download page</a>&#x4E0A;, &#x9009;&#x62E9;&#x6700;&#x65B0;&#x7248;&#x672C;&#x7684;&#x6E90;&#x7801;&#x538B;&#x7F29;&#x5305;&#xFF0C;bitcoin-0.15.0.2.tar.gz&#x3002; &#x6216;&#x8005;, &#x4F7F;&#x7528;git clone&#x547D;&#x4EE4;&#x5728;&#x672C;&#x5730;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5907;&#x4EFD;&#x3002; <a href="https://github.com/bitcoin/bitcoin" target="_blank">GitHub bitcoin page</a>.</p>
+<hr>
+<h2 id="-&#x5728;&#x672C;&#x7AE0;&#x7684;&#x8BB8;&#x591A;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x4F7F;&#x7528;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x754C;&#x9762;&#xFF08;&#x4E5F;&#x79F0;&#x4E3A;shell&#xFF09;&#xFF0C;&#x901A;&#x8FC7;&#x7EC8;&#x7AEF;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x8BBF;&#x95EE;&#x5B83;&#xFF0C;shell&#x5C06;&#x663E;&#x793A;&#x4E00;&#x4E2A;&#x63D0;&#x793A;&#x7B26;&#xFF1B;&#x4F60;&#x8F93;&#x5165;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#xFF1B;shell&#x4F1A;&#x4E3A;&#x4F60;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#x8FD4;&#x56DE;&#x4E00;&#x4E9B;&#x6587;&#x672C;&#x548C;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x63D0;&#x793A;&#x7B26;&#x3002;&#x63D0;&#x793A;&#x53EF;&#x80FD;&#x5728;&#x4F60;&#x7684;&#x7CFB;&#x7EDF;&#x4E0A;&#x770B;&#x8D77;&#x6765;&#x4E0D;&#x540C;&#xFF0C;&#x4F46;&#x5728;&#x4EE5;&#x4E0B;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x5B83;&#x7531;--&#x53F7;&#x8868;&#x793A;&#x3002;&#x5728;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x5F53;&#x4F60;&#x5728;-&#x7B26;&#x53F7;&#x540E;&#x9762;&#x770B;&#x5230;&#x6587;&#x672C;&#x65F6;&#xFF0C;&#x8BF7;&#x52FF;&#x952E;&#x5165;-&#x7B26;&#x53F7;&#xFF0C;&#x800C;&#x662F;&#x5728;&#x5176;&#x540E;&#x9762;&#x7D27;&#x63A5;&#x7740;&#x8F93;&#x5165;&#x547D;&#x4EE4;&#xFF0C;&#x7136;&#x540E;&#x6309;enter&#x6267;&#x884C;&#x8BE5;&#x547D;&#x4EE4;&#x3002;&#x5728;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x6BCF;&#x6761;&#x547D;&#x4EE4;&#x4E0B;&#x9762;&#x7684;&#x884C;&#x662F;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5BF9;&#x8BE5;&#x547D;&#x4EE4;&#x7684;&#x54CD;&#x5E94;&#x3002;&#x5F53;&#x4F60;&#x770B;&#x5230;&#x4E0B;&#x4E00;&#x4E2A;--&#x524D;&#x7F00;&#x65F6;&#xFF0C;&#x4F60;&#x5E94;&#x8BE5;&#x77E5;&#x9053;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x547D;&#x4EE4;&#x884C;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x91CD;&#x590D;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x3002;-"><a name="-&#x5728;&#x672C;&#x7AE0;&#x7684;&#x8BB8;&#x591A;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x4F7F;&#x7528;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x754C;&#x9762;&#xFF08;&#x4E5F;&#x79F0;&#x4E3A;shell&#xFF09;&#xFF0C;&#x901A;&#x8FC7;&#x7EC8;&#x7AEF;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x8BBF;&#x95EE;&#x5B83;&#xFF0C;shell&#x5C06;&#x663E;&#x793A;&#x4E00;&#x4E2A;&#x63D0;&#x793A;&#x7B26;&#xFF1B;&#x4F60;&#x8F93;&#x5165;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#xFF1B;shell&#x4F1A;&#x4E3A;&#x4F60;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#x8FD4;&#x56DE;&#x4E00;&#x4E9B;&#x6587;&#x672C;&#x548C;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x63D0;&#x793A;&#x7B26;&#x3002;&#x63D0;&#x793A;&#x53EF;&#x80FD;&#x5728;&#x4F60;&#x7684;&#x7CFB;&#x7EDF;&#x4E0A;&#x770B;&#x8D77;&#x6765;&#x4E0D;&#x540C;&#xFF0C;&#x4F46;&#x5728;&#x4EE5;&#x4E0B;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x5B83;&#x7531;--&#x53F7;&#x8868;&#x793A;&#x3002;&#x5728;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x5F53;&#x4F60;&#x5728;-&#x7B26;&#x53F7;&#x540E;&#x9762;&#x770B;&#x5230;&#x6587;&#x672C;&#x65F6;&#xFF0C;&#x8BF7;&#x52FF;&#x952E;&#x5165;-&#x7B26;&#x53F7;&#xFF0C;&#x800C;&#x662F;&#x5728;&#x5176;&#x540E;&#x9762;&#x7D27;&#x63A5;&#x7740;&#x8F93;&#x5165;&#x547D;&#x4EE4;&#xFF0C;&#x7136;&#x540E;&#x6309;enter&#x6267;&#x884C;&#x8BE5;&#x547D;&#x4EE4;&#x3002;&#x5728;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x6BCF;&#x6761;&#x547D;&#x4EE4;&#x4E0B;&#x9762;&#x7684;&#x884C;&#x662F;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5BF9;&#x8BE5;&#x547D;&#x4EE4;&#x7684;&#x54CD;&#x5E94;&#x3002;&#x5F53;&#x4F60;&#x770B;&#x5230;&#x4E0B;&#x4E00;&#x4E2A;--&#x524D;&#x7F00;&#x65F6;&#xFF0C;&#x4F60;&#x5E94;&#x8BE5;&#x77E5;&#x9053;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x547D;&#x4EE4;&#x884C;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x91CD;&#x590D;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x3002;-" class="anchor-navigation-ex-anchor" href="#-&#x5728;&#x672C;&#x7AE0;&#x7684;&#x8BB8;&#x591A;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x4F7F;&#x7528;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x754C;&#x9762;&#xFF08;&#x4E5F;&#x79F0;&#x4E3A;shell&#xFF09;&#xFF0C;&#x901A;&#x8FC7;&#x7EC8;&#x7AEF;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x8BBF;&#x95EE;&#x5B83;&#xFF0C;shell&#x5C06;&#x663E;&#x793A;&#x4E00;&#x4E2A;&#x63D0;&#x793A;&#x7B26;&#xFF1B;&#x4F60;&#x8F93;&#x5165;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#xFF1B;shell&#x4F1A;&#x4E3A;&#x4F60;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#x8FD4;&#x56DE;&#x4E00;&#x4E9B;&#x6587;&#x672C;&#x548C;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x63D0;&#x793A;&#x7B26;&#x3002;&#x63D0;&#x793A;&#x53EF;&#x80FD;&#x5728;&#x4F60;&#x7684;&#x7CFB;&#x7EDF;&#x4E0A;&#x770B;&#x8D77;&#x6765;&#x4E0D;&#x540C;&#xFF0C;&#x4F46;&#x5728;&#x4EE5;&#x4E0B;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x5B83;&#x7531;--&#x53F7;&#x8868;&#x793A;&#x3002;&#x5728;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x5F53;&#x4F60;&#x5728;-&#x7B26;&#x53F7;&#x540E;&#x9762;&#x770B;&#x5230;&#x6587;&#x672C;&#x65F6;&#xFF0C;&#x8BF7;&#x52FF;&#x952E;&#x5165;-&#x7B26;&#x53F7;&#xFF0C;&#x800C;&#x662F;&#x5728;&#x5176;&#x540E;&#x9762;&#x7D27;&#x63A5;&#x7740;&#x8F93;&#x5165;&#x547D;&#x4EE4;&#xFF0C;&#x7136;&#x540E;&#x6309;enter&#x6267;&#x884C;&#x8BE5;&#x547D;&#x4EE4;&#x3002;&#x5728;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x6BCF;&#x6761;&#x547D;&#x4EE4;&#x4E0B;&#x9762;&#x7684;&#x884C;&#x662F;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5BF9;&#x8BE5;&#x547D;&#x4EE4;&#x7684;&#x54CD;&#x5E94;&#x3002;&#x5F53;&#x4F60;&#x770B;&#x5230;&#x4E0B;&#x4E00;&#x4E2A;--&#x524D;&#x7F00;&#x65F6;&#xFF0C;&#x4F60;&#x5E94;&#x8BE5;&#x77E5;&#x9053;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x547D;&#x4EE4;&#x884C;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x91CD;&#x590D;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x3002;-"><i class="fa fa-link" aria-hidden="true"></i></a>&gt;  &#x5728;&#x672C;&#x7AE0;&#x7684;&#x8BB8;&#x591A;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x4F7F;&#x7528;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x754C;&#x9762;&#xFF08;&#x4E5F;&#x79F0;&#x4E3A;&#x201C;shell&#x201D;&#xFF09;&#xFF0C;&#x901A;&#x8FC7;&#x201C;&#x7EC8;&#x7AEF;&#x201D;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x8BBF;&#x95EE;&#x5B83;&#xFF0C;shell&#x5C06;&#x663E;&#x793A;&#x4E00;&#x4E2A;&#x63D0;&#x793A;&#x7B26;&#xFF1B;&#x4F60;&#x8F93;&#x5165;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#xFF1B;shell&#x4F1A;&#x4E3A;&#x4F60;&#x7684;&#x4E0B;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#x8FD4;&#x56DE;&#x4E00;&#x4E9B;&#x6587;&#x672C;&#x548C;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x63D0;&#x793A;&#x7B26;&#x3002;&#x63D0;&#x793A;&#x53EF;&#x80FD;&#x5728;&#x4F60;&#x7684;&#x7CFB;&#x7EDF;&#x4E0A;&#x770B;&#x8D77;&#x6765;&#x4E0D;&#x540C;&#xFF0C;&#x4F46;&#x5728;&#x4EE5;&#x4E0B;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x5B83;&#x7531; $ &#x53F7;&#x8868;&#x793A;&#x3002;&#x5728;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x5F53;&#x4F60;&#x5728;$ &#x7B26;&#x53F7;&#x540E;&#x9762;&#x770B;&#x5230;&#x6587;&#x672C;&#x65F6;&#xFF0C;&#x8BF7;&#x52FF;&#x952E;&#x5165;$ &#x7B26;&#x53F7;&#xFF0C;&#x800C;&#x662F;&#x5728;&#x5176;&#x540E;&#x9762;&#x7D27;&#x63A5;&#x7740;&#x8F93;&#x5165;&#x547D;&#x4EE4;&#xFF0C;&#x7136;&#x540E;&#x6309;Enter&#x6267;&#x884C;&#x8BE5;&#x547D;&#x4EE4;&#x3002;&#x5728;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x6BCF;&#x6761;&#x547D;&#x4EE4;&#x4E0B;&#x9762;&#x7684;&#x884C;&#x662F;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5BF9;&#x8BE5;&#x547D;&#x4EE4;&#x7684;&#x54CD;&#x5E94;&#x3002;&#x5F53;&#x4F60;&#x770B;&#x5230;&#x4E0B;&#x4E00;&#x4E2A; $ &#x524D;&#x7F00;&#x65F6;&#xFF0C;&#x4F60;&#x5E94;&#x8BE5;&#x77E5;&#x9053;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x547D;&#x4EE4;&#x884C;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x91CD;&#x590D;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x3002; </h2>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528; git &#x547D;&#x4EE4;&#x521B;&#x5EFA;&#x6E90;&#x4EE3;&#x7801;&#x7684;&#x672C;&#x5730;&#x526F;&#x672C;&#x3002;</p>
+<pre><code>$ git clone https://github.com/bitcoin/bitcoin.git
+Cloning into &apos;bitcoin&apos;...
+remote: Counting objects: 102071, done.
+remote: Compressing objects: 100% (10/10), done.
+Receiving objects: 100% (102071/102071), 86.38 MiB | 730.00 KiB/s, done.
+remote: Total 102071 (delta 4), reused 5 (delta 1), pack-reused 102060
+Resolving deltas: 100% (76168/76168), done.
+Checking connectivity... done.
+$
+</code></pre><hr>
+<h2 id="--git&#x662F;&#x4F7F;&#x7528;&#x6700;&#x5E7F;&#x6CDB;&#x7684;&#x5206;&#x5E03;&#x5F0F;&#x7248;&#x672C;&#x63A7;&#x5236;&#x7CFB;&#x7EDF;&#xFF0C;&#x5B83;&#x662F;&#x8F6F;&#x4EF6;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x5DE5;&#x5177;&#x7BB1;&#x7684;&#x91CD;&#x8981;&#x7EC4;&#x6210;&#x90E8;&#x5206;&#x3002;&#x5982;&#x679C;&#x4F60;&#x5C1A;&#x672A;&#x5B89;&#x88C5;&#xFF0C;&#x8BF7;&#x5728;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E0A;&#x5B89;&#x88C5;-git-&#x547D;&#x4EE4;&#x6216;git&#x7684;&#x56FE;&#x5F62;&#x7528;&#x6237;&#x754C;&#x9762;&#x3002;-"><a name="--git&#x662F;&#x4F7F;&#x7528;&#x6700;&#x5E7F;&#x6CDB;&#x7684;&#x5206;&#x5E03;&#x5F0F;&#x7248;&#x672C;&#x63A7;&#x5236;&#x7CFB;&#x7EDF;&#xFF0C;&#x5B83;&#x662F;&#x8F6F;&#x4EF6;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x5DE5;&#x5177;&#x7BB1;&#x7684;&#x91CD;&#x8981;&#x7EC4;&#x6210;&#x90E8;&#x5206;&#x3002;&#x5982;&#x679C;&#x4F60;&#x5C1A;&#x672A;&#x5B89;&#x88C5;&#xFF0C;&#x8BF7;&#x5728;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E0A;&#x5B89;&#x88C5;-git-&#x547D;&#x4EE4;&#x6216;git&#x7684;&#x56FE;&#x5F62;&#x7528;&#x6237;&#x754C;&#x9762;&#x3002;-" class="anchor-navigation-ex-anchor" href="#--git&#x662F;&#x4F7F;&#x7528;&#x6700;&#x5E7F;&#x6CDB;&#x7684;&#x5206;&#x5E03;&#x5F0F;&#x7248;&#x672C;&#x63A7;&#x5236;&#x7CFB;&#x7EDF;&#xFF0C;&#x5B83;&#x662F;&#x8F6F;&#x4EF6;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x5DE5;&#x5177;&#x7BB1;&#x7684;&#x91CD;&#x8981;&#x7EC4;&#x6210;&#x90E8;&#x5206;&#x3002;&#x5982;&#x679C;&#x4F60;&#x5C1A;&#x672A;&#x5B89;&#x88C5;&#xFF0C;&#x8BF7;&#x5728;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E0A;&#x5B89;&#x88C5;-git-&#x547D;&#x4EE4;&#x6216;git&#x7684;&#x56FE;&#x5F62;&#x7528;&#x6237;&#x754C;&#x9762;&#x3002;-"><i class="fa fa-link" aria-hidden="true"></i></a>&gt;   Git&#x662F;&#x4F7F;&#x7528;&#x6700;&#x5E7F;&#x6CDB;&#x7684;&#x5206;&#x5E03;&#x5F0F;&#x7248;&#x672C;&#x63A7;&#x5236;&#x7CFB;&#x7EDF;&#xFF0C;&#x5B83;&#x662F;&#x8F6F;&#x4EF6;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x5DE5;&#x5177;&#x7BB1;&#x7684;&#x91CD;&#x8981;&#x7EC4;&#x6210;&#x90E8;&#x5206;&#x3002;&#x5982;&#x679C;&#x4F60;&#x5C1A;&#x672A;&#x5B89;&#x88C5;&#xFF0C;&#x8BF7;&#x5728;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E0A;&#x5B89;&#x88C5; git &#x547D;&#x4EE4;&#x6216;git&#x7684;&#x56FE;&#x5F62;&#x7528;&#x6237;&#x754C;&#x9762;&#x3002; </h2>
+<p>&#x5F53;git&#x514B;&#x9686;&#x64CD;&#x4F5C;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x4F60;&#x5C06;&#x5728;<em>bitcoin</em>&#x76EE;&#x5F55;&#x4E2D;&#x62E5;&#x6709;&#x5B8C;&#x6574;&#x7684;&#x6E90;&#x4EE3;&#x7801;&#x5E93;&#x672C;&#x5730;&#x526F;&#x672C;&#x3002;&#x5728;&#x63D0;&#x793A;&#x7B26;&#x5904;&#x8F93;&#x5165; <strong>cd bitcoin</strong> &#x5207;&#x6362;&#x5230;&#x6B64;&#x76EE;&#x5F55;&#xFF1A;</p>
+<pre><code>$ cd bitcoin
+</code></pre><h4 id="&#x9009;&#x62E9;bitcoin-core&#x7684;&#x53D1;&#x884C;&#x7248;"><a name="&#x9009;&#x62E9;bitcoin-core&#x7684;&#x53D1;&#x884C;&#x7248;" class="anchor-navigation-ex-anchor" href="#&#x9009;&#x62E9;bitcoin-core&#x7684;&#x53D1;&#x884C;&#x7248;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x9009;&#x62E9;Bitcoin Core&#x7684;&#x53D1;&#x884C;&#x7248;</h4>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x672C;&#x5730;&#x526F;&#x672C;&#x5C06;&#x540C;&#x6B65;&#x6700;&#x65B0;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x8FD9;&#x53EF;&#x80FD;&#x662F;&#x6BD4;&#x7279;&#x5E01;&#x7684;&#x4E0D;&#x7A33;&#x5B9A;&#x7248;&#x6216;beta&#x7248;&#x3002;&#x7F16;&#x8BD1;&#x4EE3;&#x7801;&#x4E4B;&#x524D;&#xFF0C;&#x901A;&#x8FC7;&#x68C0;&#x67E5;<em>tag</em>&#x6765;&#x9009;&#x62E9;&#x7279;&#x5B9A;&#x7248;&#x672C;&#x3002;&#x8FD9;&#x5C06;&#x4F7F;&#x672C;&#x5730;&#x526F;&#x672C;&#x4E0E;&#x7531;&#x5173;&#x952E;&#x5B57;&#x6807;&#x8BB0;&#x6807;&#x8BC6;&#x7684;&#x4EE3;&#x7801;&#x5B58;&#x50A8;&#x5E93;&#x7684;&#x7279;&#x5B9A;&#x5FEB;&#x7167;&#x540C;&#x6B65;&#x3002;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x4F7F;&#x7528;&#x6807;&#x7B7E;&#x901A;&#x8FC7;&#x7248;&#x672C;&#x53F7;&#x6807;&#x8BB0;&#x4EE3;&#x7801;&#x7684;&#x7279;&#x5B9A;&#x7248;&#x672C;&#x3002;&#x9996;&#x5148;&#xFF0C;&#x4E3A;&#x4E86;&#x627E;&#x5230;&#x53EF;&#x7528;&#x7684;&#x6807;&#x7B7E;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528; git tag &#x547D;&#x4EE4;&#xFF1A;</p>
+<pre><code>$ git tag
+v0.1.5
+v0.1.6test1
+v0.10.0
+...
+v0.11.2
+v0.11.2rc1
+v0.12.0rc1
+v0.12.0rc2
+...
+</code></pre><p>&#x6807;&#x7B7E;&#x5217;&#x8868;&#x663E;&#x793A;&#x6BD4;&#x7279;&#x5E01;&#x7684;&#x6240;&#x6709;&#x53D1;&#x884C;&#x7248;&#x672C;&#x3002;&#x6309;&#x7167;&#x60EF;&#x4F8B;&#xFF0C;&#x7528;&#x4E8E;&#x6D4B;&#x8BD5;&#x7684;<em>&#x53D1;&#x884C;&#x9884;&#x89C8;&#x7248;&#xFF08;release candidates&#xFF09;</em>&#x5177;&#x6709;&#x540E;&#x7F00;&#x201C;rc&#x201D;&#x3002;&#x53EF;&#x4EE5;&#x5728;&#x751F;&#x4EA7;&#x7CFB;&#x7EDF;&#x4E0A;&#x8FD0;&#x884C;&#x7684;&#x7A33;&#x5B9A;&#x7248;&#x672C;&#x6CA1;&#x6709;&#x540E;&#x7F00;&#x3002;&#x4ECE;&#x4E0A;&#x9762;&#x7684;&#x5217;&#x8868;&#x4E2D;&#x9009;&#x62E9;&#x6700;&#x9AD8;&#x7248;&#x672C;&#x7684;&#x53D1;&#x884C;&#x7248;&#x672C;&#xFF0C;&#x5728;&#x64B0;&#x5199;&#x672C;&#x6587;&#x65F6;&#x662F;v0.15.0&#x3002;&#x8981;&#x4F7F;&#x672C;&#x5730;&#x4EE3;&#x7801;&#x4E0E;&#x6B64;&#x7248;&#x672C;&#x540C;&#x6B65;&#xFF0C;&#x8BF7;&#x4F7F;&#x7528; git checkout &#x547D;&#x4EE4;&#xFF1A;</p>
+<pre><code>$ git checkout v0.15.0
+HEAD is now at 3751912... Merge #11295: doc: Old fee_estimates.dat are discarded by 0.15.0
+</code></pre><p>&#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x547D;&#x4EE4; git status &#x6765;&#x786E;&#x8BA4;&#x4F60;&#x5DF2;&#x7ECF;&#x201C;&#x68C0;&#x51FA;&#x201D;&#x4E86;&#x6240;&#x9700;&#x7684;&#x7248;&#x672C;&#xFF1A;</p>
+<pre><code>$ git status
+HEAD detached at v0.15.0
+nothing to commit, working directory clean
+</code></pre><h4 id="bitcoin-core&#x7684;&#x6784;&#x5EFA;&#x914D;&#x7F6E;"><a name="bitcoin-core&#x7684;&#x6784;&#x5EFA;&#x914D;&#x7F6E;" class="anchor-navigation-ex-anchor" href="#bitcoin-core&#x7684;&#x6784;&#x5EFA;&#x914D;&#x7F6E;"><i class="fa fa-link" aria-hidden="true"></i></a>Bitcoin Core&#x7684;&#x6784;&#x5EFA;&#x914D;&#x7F6E;</h4>
+<p>&#x6E90;&#x4EE3;&#x7801;&#x5305;&#x62EC;&#x6587;&#x6863;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x8BB8;&#x591A;&#x6587;&#x4EF6;&#x4E2D;&#x627E;&#x5230;&#x3002;&#x8F93;&#x5165; <strong>more README.md</strong>&#xFF0C;&#x67E5;&#x770B;<em>bitcoin</em>&#x76EE;&#x5F55;&#x4E2D;&#x7684;<em>README.md</em>&#x4E3B;&#x6587;&#x6863;&#xFF0C;&#x53EF;&#x4F7F;&#x7528;&#x7A7A;&#x683C;&#x952E;&#x8FDB;&#x884C;&#x7FFB;&#x9875;&#x3002;&#x5728;&#x672C;&#x7AE0;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x6784;&#x5EFA;&#x547D;&#x4EE4;&#x884C;&#x6BD4;&#x7279;&#x5E01;&#x5BA2;&#x6237;&#x7AEF;&#xFF08;command-line bitcoin client&#xFF09;&#xFF0C;&#x5728;Linux&#x4E0A;&#x4E5F;&#x79F0;&#x4E3A; bitcoind&#x3002;&#x8F93;&#x5165; <strong>more doc/build-unix.md</strong> &#x6765;&#x67E5;&#x770B;&#x5728;&#x4F60;&#x7684;&#x5E73;&#x53F0;&#x4E0A;&#x7F16;&#x8BD1; bitcoind &#x7684;&#x8BF4;&#x660E;&#x3002;macOS&#x548C;Windows&#x7684;&#x8BF4;&#x660E;&#x53EF;&#x4EE5;&#x5728;<em>doc</em>&#x76EE;&#x5F55;&#x4E2D;&#x627E;&#x5230;&#xFF0C;&#x5206;&#x522B;&#x4E3A;<em>build-osx.md</em>&#x6216;<em>build-windows.md</em>&#x3002;</p>
+<p>&#x4ED4;&#x7EC6;&#x67E5;&#x770B;&#x6784;&#x5EFA;&#x6587;&#x6863;&#x7B2C;&#x4E00;&#x90E8;&#x5206;&#x4E2D;&#x7684;&#x4F9D;&#x8D56;&#x5E93;&#xFF0C;&#x5982;boost-devel, libevent-devel, openssl-devel, gcc-c++&#xFF0C;libdb4-cxx-devel&#xFF0C;autoconf, automake&#xFF0C;libtool&#x7B49;&#x3002;&#x5728;&#x4F60;&#x5F00;&#x59CB;&#x7F16;&#x8BD1;&#x6BD4;&#x7279;&#x5E01;&#x4E4B;&#x524D;&#xFF0C;&#x8FD9;&#x4E9B;&#x5E93;&#x5FC5;&#x987B;&#x5B58;&#x5728;&#x4E8E;&#x4F60;&#x7684;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;&#x5426;&#x5219;&#x6784;&#x5EFA;&#x8FC7;&#x7A0B;&#x5C06;&#x5931;&#x8D25;&#x3002;&#x5982;&#x679C;&#x56E0;&#x4E3A;&#x6F0F;&#x6389;&#x4E86;&#x67D0;&#x4E9B;&#x4F9D;&#x8D56;&#x5E93;&#x800C;&#x5BFC;&#x81F4;&#x5931;&#x8D25;&#xFF0C;&#x53EF;&#x4EE5;&#x5B89;&#x88C5;&#x5B83;&#xFF0C;&#x7136;&#x540E;&#x4ECE;&#x4E4B;&#x524D;&#x505C;&#x6B62;&#x7684;&#x5730;&#x65B9;&#x6062;&#x590D;&#x6784;&#x5EFA;&#x8FC7;&#x7A0B;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4F7F;&#x7528;<em>autogen.sh</em>&#x811A;&#x672C;&#x751F;&#x6210;&#x4E00;&#x7EC4;&#x6784;&#x5EFA;&#x811A;&#x672C;&#x6765;&#x542F;&#x52A8;&#x6784;&#x5EFA;&#x8FC7;&#x7A0B;&#x3002;</p>
+<pre><code>$ ./autogen.sh
+...
+glibtoolize: copying file &apos;build-aux/m4/libtool.m4&apos;
+glibtoolize: copying file &apos;build-aux/m4/ltoptions.m4&apos;
+glibtoolize: copying file &apos;build-aux/m4/ltsugar.m4&apos;
+glibtoolize: copying file &apos;build-aux/m4/ltversion.m4&apos;
+...
+configure.ac:10: installing &apos;build-aux/compile&apos;
+configure.ac:5: installing &apos;build-aux/config.guess&apos;
+configure.ac:5: installing &apos;build-aux/config.sub&apos;
+configure.ac:9: installing &apos;build-aux/install-sh&apos;
+configure.ac:9: installing &apos;build-aux/missing&apos;
+Makefile.am: installing &apos;build-aux/depcomp&apos;
+...
+</code></pre><p><em>autogen.sh</em>&#x811A;&#x672C;&#x521B;&#x5EFA;&#x4E00;&#x7EC4;&#x81EA;&#x52A8;&#x914D;&#x7F6E;&#x811A;&#x672C;&#xFF0C;&#x5B83;&#x4EEC;&#x5C06;&#x8BE2;&#x95EE;&#x4F60;&#x7684;&#x7CFB;&#x7EDF;&#x4EE5;&#x53D1;&#x73B0;&#x6B63;&#x786E;&#x7684;&#x8BBE;&#x7F6E;&#xFF0C;&#x5E76;&#x786E;&#x4FDD;&#x4F60;&#x62E5;&#x6709;&#x7F16;&#x8BD1;&#x4EE3;&#x7801;&#x6240;&#x9700;&#x7684;&#x5168;&#x90E8;&#x5E93;&#x3002;&#x5176;&#x4E2D;&#x6700;&#x91CD;&#x8981;&#x7684;&#x662F; configure &#x811A;&#x672C;&#xFF0C;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x8BB8;&#x591A;&#x4E0D;&#x540C;&#x7684;&#x9009;&#x9879;&#x6765;&#x5B9A;&#x5236;&#x6784;&#x5EFA;&#x8FC7;&#x7A0B;&#x3002;&#x952E;&#x5165; <strong>./configure --help</strong> &#x67E5;&#x770B;&#x5404;&#x79CD;&#x9009;&#x9879;&#x3002;</p>
+<pre><code>$ ./configure --help
+`configure&apos; configures Bitcoin Core 0.15.0 to adapt to many kinds of systems.
+
+Usage: ./configure [OPTION]... [VAR=VALUE]...
+
+...
+Optional Features:
+  --disable-option-checking  ignore unrecognized --enable/--with options
+  --disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
+  --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
+
+  --enable-wallet         enable wallet (default is yes)
+
+  --with-gui[=no|qt4|qt5|auto]
+...
+</code></pre><p>configure &#x811A;&#x672C;&#x5141;&#x8BB8;&#x4F60;&#x901A;&#x8FC7;&#x4F7F;&#x7528; -enable-FEATURE &#x548C; -disable-FEATURE &#x6807;&#x5FD7;&#x542F;&#x7528;&#x6216;&#x7981;&#x7528; bitcoind &#x7684;&#x67D0;&#x4E9B;&#x529F;&#x80FD;&#xFF0C;&#x5176;&#x4E2D; <code>FEATURE</code> &#x88AB;&#x66FF;&#x6362;&#x4E3A;&#x5E2E;&#x52A9;&#x8F93;&#x51FA;&#x4E2D;&#x5217;&#x51FA;&#x7684;&#x7279;&#x5F81;&#x540D;&#x79F0;&#x3002;&#x5728;&#x672C;&#x7AE0;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x6784;&#x5EFA;&#x5E26;&#x6709;&#x6240;&#x6709;&#x9ED8;&#x8BA4;&#x529F;&#x80FD;&#x7684; bitcoind &#x5BA2;&#x6237;&#x7AEF;&#x3002;&#x6211;&#x4EEC;&#x4E0D;&#x4F1A;&#x4F7F;&#x7528;&#x914D;&#x7F6E;&#x6807;&#x5FD7;&#xFF0C;&#x4F46;&#x4F60;&#x5E94;&#x8BE5;&#x67E5;&#x770B;&#x5B83;&#x4EEC;&#x4EE5;&#x4E86;&#x89E3;&#x54EA;&#x4E9B;&#x53EF;&#x9009;&#x529F;&#x80FD;&#x662F;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x4E00;&#x90E8;&#x5206;&#x3002;&#x5982;&#x679C;&#x4F60;&#x5904;&#x4E8E;&#x5B66;&#x672F;&#x73AF;&#x5883;&#x4E2D;&#xFF0C;&#x5B9E;&#x9A8C;&#x5BA4;&#x53EF;&#x80FD;&#x4F1A;&#x8981;&#x6C42;&#x4F60;&#x5C06;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5B89;&#x88C5;&#x5230;&#x4F60;&#x7684;&#x4E3B;&#x76EE;&#x5F55;&#x4E2D;&#xFF08;&#x4F8B;&#x5982;&#xFF0C;&#x4F7F;&#x7528;+-prefix=$HOME+&#xFF09;&#x3002;</p>
+<p>&#x4EE5;&#x4E0B;&#x662F;&#x8986;&#x76D6;&#x914D;&#x7F6E;&#x811A;&#x672C;&#x9ED8;&#x8BA4;&#x884C;&#x4E3A;&#x7684;&#x4E00;&#x4E9B;&#x6709;&#x7528;&#x9009;&#x9879;&#xFF1A;</p>
+<ul>
+<li><p><code>--prefix=$HOME</code></p>
+<p>&#x8986;&#x76D6;&#x751F;&#x6210;&#x7684;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x7684;&#x9ED8;&#x8BA4;&#x5B89;&#x88C5;&#x4F4D;&#x7F6E; (<em>/usr/local/</em>)&#x3002;&#x4F7F;&#x7528;<code>$HOME</code>&#x4EE5;&#x5C06;&#x6240;&#x6709;&#x5185;&#x5BB9;&#x653E;&#x5728;&#x4F60;&#x7684;&#x4E3B;&#x76EE;&#x5F55;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5176;&#x4ED6;&#x8DEF;&#x5F84;&#x3002;</p>
+</li>
+<li><p><code>--disable-wallet</code></p>
+<p>&#x7981;&#x7528;&#x94B1;&#x5305;&#x7684;&#x53C2;&#x8003;&#x5B9E;&#x73B0;&#x3002;</p>
+</li>
+<li><p><code>--with-incompatible-bdb</code></p>
+<p>&#x5982;&#x679C;&#x4F60;&#x6B63;&#x5728;&#x6784;&#x5EFA;&#x94B1;&#x5305;&#xFF0C;&#x53EF;&#x4EE5;&#x5141;&#x8BB8;&#x4F7F;&#x7528;&#x4E0D;&#x517C;&#x5BB9;Berkeley DB&#x5E93;&#x7684;&#x7248;&#x672C;&#x3002;</p>
+</li>
+<li><p><code>--with-gui=no</code></p>
+<p>&#x4E0D;&#x6784;&#x5EFA;&#x9700;&#x8981;Qt&#x5E93;&#x7684;&#x56FE;&#x5F62;&#x7528;&#x6237;&#x754C;&#x9762;&#x3002;&#x8FD9;&#x53EA;&#x4F1A;&#x6784;&#x5EFA;&#x670D;&#x52A1;&#x5668;&#x548C;&#x547D;&#x4EE4;&#x884C;&#x3002;</p>
+</li>
+</ul>
+<p>&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x8FD0;&#x884C; configure &#x811A;&#x672C;&#xFF0C;&#x5B83;&#x4F1A;&#x81EA;&#x52A8;&#x53D1;&#x73B0;&#x6240;&#x6709;&#x5FC5;&#x8981;&#x7684;&#x5E93;&#xFF0C;&#x5E76;&#x4E3A;&#x4F60;&#x7684;&#x7CFB;&#x7EDF;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7279;&#x5B9A;&#x7684;&#x6784;&#x5EFA;&#x811A;&#x672C;&#xFF1A;</p>
+<pre><code>$ ./configure
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+...
+[many pages of configuration tests follow]
+...
+$
+</code></pre><p>&#x5982;&#x679C;&#x4E00;&#x5207;&#x987A;&#x5229;&#xFF0C;configure &#x547D;&#x4EE4;&#x5C06;&#x521B;&#x5EFA;&#x5141;&#x8BB8;&#x6211;&#x4EEC;&#x7F16;&#x8BD1; bitcoind &#x7684;&#x5B9A;&#x5236;&#x6784;&#x5EFA;&#x811A;&#x672C;&#x5E76;&#x7ED3;&#x675F;&#x3002;&#x5982;&#x679C;&#x6709;&#x4EFB;&#x4F55;&#x7F3A;&#x5931;&#x7684;&#x5E93;&#x6216;&#x9519;&#x8BEF;&#xFF0C;configure &#x547D;&#x4EE4;&#x5C06;&#x7EC8;&#x6B62;&#x5E76;&#x663E;&#x793A;&#x9519;&#x8BEF;&#x3002;&#x5982;&#x679C;&#x53D1;&#x751F;&#x9519;&#x8BEF;&#xFF0C;&#x5F88;&#x53EF;&#x80FD;&#x662F;&#x56E0;&#x4E3A;&#x7F3A;&#x5C11;&#x6216;&#x4E0D;&#x517C;&#x5BB9;&#x7684;&#x5E93;&#x3002;&#x518D;&#x6B21;&#x67E5;&#x770B;&#x6784;&#x5EFA;&#x6587;&#x6863;&#xFF0C;&#x5E76;&#x786E;&#x4FDD;&#x5B89;&#x88C5;&#x7F3A;&#x5C11;&#x7684;&#x5148;&#x51B3;&#x6761;&#x4EF6;&#x3002;&#x7136;&#x540E;&#x518D;&#x6B21;&#x8FD0;&#x884C; configure &#x5E76;&#x67E5;&#x770B;&#x662F;&#x5426;&#x4FEE;&#x590D;&#x4E86;&#x9519;&#x8BEF;&#x3002;</p>
+<h4 id="&#x6784;&#x5EFA;bitcoin-core&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;"><a name="&#x6784;&#x5EFA;bitcoin-core&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;" class="anchor-navigation-ex-anchor" href="#&#x6784;&#x5EFA;bitcoin-core&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6784;&#x5EFA;Bitcoin Core&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;</h4>
+<p>&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x4F60;&#x5C06;&#x7F16;&#x8BD1;&#x6E90;&#x4EE3;&#x7801;&#xFF0C;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x5C0F;&#x65F6;&#x624D;&#x80FD;&#x5B8C;&#x6210;&#xFF0C;&#x5177;&#x4F53;&#x53D6;&#x51B3;&#x4E8E;CPU&#x7684;&#x901F;&#x5EA6;&#x548C;&#x53EF;&#x7528;&#x5185;&#x5B58;&#x3002;&#x5728;&#x7F16;&#x8BD1;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x4F60;&#x5E94;&#x8BE5;&#x6BCF;&#x9694;&#x51E0;&#x79D2;&#x6216;&#x51E0;&#x5206;&#x949F;&#x770B;&#x4E00;&#x6B21;&#x8F93;&#x51FA;&#x3002;&#x5982;&#x679C;&#x53D1;&#x751F;&#x9519;&#x8BEF;&#xFF0C;&#x6216;&#x8005;&#x7F16;&#x8BD1;&#x8FC7;&#x7A0B;&#x4E2D;&#x65AD;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x518D;&#x6B21;&#x8F93;&#x5165; make &#x6062;&#x590D;&#x3002;&#x952E;&#x5165; <strong>make</strong> &#x5F00;&#x59CB;&#x7F16;&#x8BD1;&#x53EF;&#x6267;&#x884C;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF1A;</p>
+<pre><code>$ make
+Making all in src
+  CXX      crypto/libbitcoinconsensus_la-hmac_sha512.lo
+  CXX      crypto/libbitcoinconsensus_la-ripemd160.lo
+  CXX      crypto/libbitcoinconsensus_la-sha1.lo
+  CXX      crypto/libbitcoinconsensus_la-sha256.lo
+  CXX      crypto/libbitcoinconsensus_la-sha512.lo
+  CXX      libbitcoinconsensus_la-hash.lo
+  CXX      primitives/libbitcoinconsensus_la-transaction.lo
+  CXX      libbitcoinconsensus_la-pubkey.lo
+  CXX      script/libbitcoinconsensus_la-bitcoinconsensus.lo
+  CXX      script/libbitcoinconsensus_la-interpreter.lo
+
+[... many more compilation messages follow ...]
+
+$
+</code></pre><p>&#x5728;&#x5177;&#x6709;&#x591A;&#x4E2A;CPU&#x7684;&#x7CFB;&#x7EDF;&#x4E0A;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x5E76;&#x884C;&#x7F16;&#x8BD1;&#x4F5C;&#x4E1A;&#x7684;&#x6838;&#x6570;&#x3002;&#x4F8B;&#x5982;&#xFF0C;make -j 2 &#x5C06;&#x4F7F;&#x7528;&#x4E24;&#x4E2A;CPU&#x6838;&#x3002;&#x5982;&#x679C;&#x4E00;&#x5207;&#x987A;&#x5229;&#xFF0C;Bitcoin Core&#x5DF2;&#x7ECF;&#x7F16;&#x8BD1;&#x5B8C;&#x6210;&#xFF0C;&#x4F60;&#x5E94;&#x8BE5;&#x4F7F;&#x7528; make check &#x8FD0;&#x884C;&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x5957;&#x4EF6;&#xFF0C;&#x4EE5;&#x786E;&#x4FDD;&#x94FE;&#x63A5;&#x5E93;&#x4E0D;&#x4F1A;&#x4E2D;&#x65AD;&#x3002;&#x6700;&#x540E;&#x4E00;&#x6B65;&#x662F;&#x4F7F;&#x7528; make install &#x547D;&#x4EE4;&#x5728;&#x4F60;&#x7684;&#x7CFB;&#x7EDF;&#x4E0A;&#x5B89;&#x88C5;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x3002;&#x7CFB;&#x7EDF;&#x53EF;&#x80FD;&#x4F1A;&#x63D0;&#x793A;&#x4F60;&#x8F93;&#x5165;&#x7528;&#x6237;&#x5BC6;&#x7801;&#xFF0C;&#x56E0;&#x4E3A;&#x6B64;&#x6B65;&#x9AA4;&#x9700;&#x8981;&#x7BA1;&#x7406;&#x6743;&#x9650;&#xFF1A;</p>
+<pre><code>$ make check &amp;&amp; sudo make install
+Password:
+Making install in src
+ ../build-aux/install-sh -c -d &apos;/usr/local/lib&apos;
+libtool: install: /usr/bin/install -c bitcoind /usr/local/bin/bitcoind
+libtool: install: /usr/bin/install -c bitcoin-cli /usr/local/bin/bitcoin-cli
+libtool: install: /usr/bin/install -c bitcoin-tx /usr/local/bin/bitcoin-tx
+...
+$
+</code></pre><p>+bitcoind+&#x9ED8;&#x8BA4;&#x5B89;&#x88C5;&#x5728; <em>/usr/local/bin</em> &#x4E2D;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x67E5;&#x770B;:</p>
+<pre><code>$ which bitcoind
+/usr/local/bin/bitcoind
+
+$ which bitcoin-cli
+/usr/local/bin/bitcoin-cli
+</code></pre><h3 id="&#x8FD0;&#x884C;bitcoin-core&#x8282;&#x70B9;"><a name="&#x8FD0;&#x884C;bitcoin-core&#x8282;&#x70B9;" class="anchor-navigation-ex-anchor" href="#&#x8FD0;&#x884C;bitcoin-core&#x8282;&#x70B9;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8FD0;&#x884C;Bitcoin Core&#x8282;&#x70B9;</h3>
+<p>&#x6BD4;&#x7279;&#x5E01;&#x7684;&#x70B9;&#x5BF9;&#x70B9;&#x7F51;&#x7EDC;&#x7531;&#x7F51;&#x7EDC;&#x201C;&#x8282;&#x70B9;&#x201D;&#x7EC4;&#x6210;&#xFF0C;&#x4E3B;&#x8981;&#x7531;&#x5FD7;&#x613F;&#x8005;&#x548C;&#x4E00;&#x4E9B;&#x6784;&#x5EFA;&#x6BD4;&#x7279;&#x5E01;&#x5E94;&#x7528;&#x7684;&#x4F01;&#x4E1A;&#x8FD0;&#x884C;&#x3002;&#x90A3;&#x4E9B;&#x8FD0;&#x884C;&#x6BD4;&#x7279;&#x5E01;&#x8282;&#x70B9;&#x7684;&#x4EBA;&#x5BF9;&#x6BD4;&#x7279;&#x5E01;&#x533A;&#x5757;&#x94FE;&#x62E5;&#x6709;&#x76F4;&#x63A5;&#x548C;&#x6743;&#x5A01;&#x7684;&#x89C6;&#x91CE;&#xFF0C;&#x5E76;&#x62E5;&#x6709;&#x6240;&#x6709;&#x4EA4;&#x6613;&#x7684;&#x672C;&#x5730;&#x526F;&#x672C;&#xFF0C;&#x7531;&#x4ED6;&#x4EEC;&#x81EA;&#x5DF1;&#x7684;&#x7CFB;&#x7EDF;&#x8FDB;&#x884C;&#x72EC;&#x7ACB;&#x9A8C;&#x8BC1;&#x3002;&#x901A;&#x8FC7;&#x8FD0;&#x884C;&#x8282;&#x70B9;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x4E0D;&#x4F9D;&#x9760;&#x4EFB;&#x4F55;&#x7B2C;&#x4E09;&#x65B9;&#x6765;&#x9A8C;&#x8BC1;&#x4EA4;&#x6613;&#x3002;&#x6B64;&#x5916;&#xFF0C;&#x4F60;&#x8FD8;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x589E;&#x5F3A;&#x6BD4;&#x7279;&#x5E01;&#x7F51;&#x7EDC;&#x7684;&#x80FD;&#x529B;&#xFF0C;&#x4E3A;&#x6BD4;&#x7279;&#x5E01;&#x7F51;&#x7EDC;&#x505A;&#x51FA;&#x8D21;&#x732E;&#x3002;</p>
+<p>&#x7136;&#x800C;&#xFF0C;&#x8FD0;&#x884C;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#xFF0C;&#x9700;&#x8981;&#x6709;&#x8DB3;&#x591F;&#x8D44;&#x6E90;&#x6765;&#x5904;&#x7406;&#x6240;&#x6709;&#x6BD4;&#x7279;&#x5E01;&#x4EA4;&#x6613;&#x7684;&#x6C38;&#x4E45;&#x7684;&#x53EF;&#x8FDE;&#x63A5;&#x7684;&#x7CFB;&#x7EDF;&#x3002;&#x53D6;&#x51B3;&#x4E8E;&#x4F60;&#x662F;&#x5426;&#x9009;&#x62E9;&#x7D22;&#x5F15;&#x6240;&#x6709;&#x4EA4;&#x6613;&#x5E76;&#x4FDD;&#x5B58;&#x533A;&#x5757;&#x94FE;&#x7684;&#x5B8C;&#x6574;&#x526F;&#x672C;&#xFF0C;&#x4F60;&#x53EF;&#x80FD;&#x8FD8;&#x9700;&#x8981;&#x5927;&#x91CF;&#x7684;&#x78C1;&#x76D8;&#x7A7A;&#x95F4;&#x548C;&#x5185;&#x5B58;&#x3002; &#x5728;2018&#x5E74;&#x521D;&#xFF0C;&#x4E00;&#x4E2A;&#x5168;&#x90E8;&#x7D22;&#x5F15;&#x7684;&#x8282;&#x70B9;&#x9700;&#x8981;&#x81F3;&#x5C11;2GB&#x5185;&#x5B58;&#x548C;160GB&#x786C;&#x76D8;&#x7A7A;&#x95F4;&#xFF08;&#x53C2;&#x89C1; <a href="https://blockchain.info/charts/blocks-size&#xFF09;&#x3002;&#x6BD4;&#x7279;&#x5E01;&#x8282;&#x70B9;&#x4E5F;&#x9700;&#x8981;&#x7F51;&#x7EDC;&#x5E26;&#x5BBD;&#x6765;&#x4F20;&#x8F93;&#x548C;&#x63A5;&#x6536;&#x6BD4;&#x7279;&#x5E01;&#x4EA4;&#x6613;&#x548C;&#x533A;&#x5757;&#x3002;&#x5982;&#x679C;&#x4F60;&#x7684;&#x7F51;&#x7EDC;&#x5E26;&#x5BBD;&#x6709;&#x9650;&#xFF0C;&#x5219;&#x4F60;&#x53EF;&#x80FD;&#x4E0D;&#x5E94;&#x8BE5;&#x5728;&#x5176;&#x4E0A;&#x8FD0;&#x884C;&#x6BD4;&#x7279;&#x5E01;&#x8282;&#x70B9;&#xFF0C;&#x6216;&#x8005;&#x4EE5;&#x9650;&#x5236;&#x5176;&#x5E26;&#x5BBD;&#x7684;&#x65B9;&#x5F0F;&#x8FD0;&#x884C;&#x5B83;&#xFF08;&#x53C2;&#x89C1;" target="_blank">https://blockchain.info/charts/blocks-size&#xFF09;&#x3002;&#x6BD4;&#x7279;&#x5E01;&#x8282;&#x70B9;&#x4E5F;&#x9700;&#x8981;&#x7F51;&#x7EDC;&#x5E26;&#x5BBD;&#x6765;&#x4F20;&#x8F93;&#x548C;&#x63A5;&#x6536;&#x6BD4;&#x7279;&#x5E01;&#x4EA4;&#x6613;&#x548C;&#x533A;&#x5757;&#x3002;&#x5982;&#x679C;&#x4F60;&#x7684;&#x7F51;&#x7EDC;&#x5E26;&#x5BBD;&#x6709;&#x9650;&#xFF0C;&#x5219;&#x4F60;&#x53EF;&#x80FD;&#x4E0D;&#x5E94;&#x8BE5;&#x5728;&#x5176;&#x4E0A;&#x8FD0;&#x884C;&#x6BD4;&#x7279;&#x5E01;&#x8282;&#x70B9;&#xFF0C;&#x6216;&#x8005;&#x4EE5;&#x9650;&#x5236;&#x5176;&#x5E26;&#x5BBD;&#x7684;&#x65B9;&#x5F0F;&#x8FD0;&#x884C;&#x5B83;&#xFF08;&#x53C2;&#x89C1;</a> <a href="https://github.com/wjw465150/bitcoin_book_2nd/blob/master/&#x7B2C;&#x4E09;&#x7AE0;.asciidoc#constrained_resources" target="_blank">Sample configuration of a resource-constrained system</a>&#xFF09;&#x3002;</p>
+<hr>
+<h2 id="--bitcoin-core&#x9ED8;&#x8BA4;&#x4FDD;&#x5B58;&#x5B8C;&#x6574;&#x7684;&#x533A;&#x5757;&#x94FE;&#x526F;&#x672C;&#xFF0C;&#x5305;&#x62EC;2009&#x5E74;&#x4EE5;&#x6765;&#x6240;&#x6709;&#x6BD4;&#x7279;&#x5E01;&#x7F51;&#x7EDC;&#x4E0A;&#x53D1;&#x751F;&#x7684;&#x4EA4;&#x6613;&#x3002;&#x8BE5;&#x6570;&#x636E;&#x96C6;&#x7684;&#x5927;&#x5C0F;&#x4E3A;&#x51E0;&#x5341;gb&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x51E0;&#x5929;&#x6216;&#x51E0;&#x5468;&#x5185;&#x9012;&#x589E;&#x4E0B;&#x8F7D;&#xFF0C;&#x5177;&#x4F53;&#x53D6;&#x51B3;&#x4E8E;&#x4F60;&#x7684;cpu&#x548C;&#x7F51;&#x7EDC;&#x901F;&#x5EA6;&#x3002;&#x5728;&#x5B8C;&#x6574;&#x7684;&#x533A;&#x5757;&#x94FE;&#x6570;&#x636E;&#x96C6;&#x4E0B;&#x8F7D;&#x5B8C;&#x4E4B;&#x524D;&#xFF0C;bitcoin-core&#x5C06;&#x65E0;&#x6CD5;&#x5904;&#x7406;&#x4EA4;&#x6613;&#x6216;&#x66F4;&#x65B0;&#x8D26;&#x6237;&#x4F59;&#x989D;&#x3002;&#x786E;&#x4FDD;&#x4F60;&#x6709;&#x8DB3;&#x591F;&#x7684;&#x78C1;&#x76D8;&#x7A7A;&#x95F4;&#xFF0C;&#x5E26;&#x5BBD;&#x548C;&#x65F6;&#x95F4;&#x6765;&#x5B8C;&#x6210;&#x521D;&#x59CB;&#x540C;&#x6B65;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x914D;&#x7F6E;bitcoin-core&#xFF0C;&#x901A;&#x8FC7;&#x4E22;&#x5F03;&#x65E7;&#x5757;&#x6765;&#x51CF;&#x5C11;&#x533A;&#x5757;&#x94FE;&#x7684;&#x5927;&#x5C0F;&#x3002;&#x53C2;&#x89C1;-sample-configuration-of-a-resource-constrained-system-&#x4F46;&#x5728;&#x4E22;&#x5F03;&#x6570;&#x636E;&#x4E4B;&#x524D;&#x5B83;&#x4ECD;&#x4F1A;&#x4E0B;&#x8F7D;&#x6574;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x3002;-"><a name="--bitcoin-core&#x9ED8;&#x8BA4;&#x4FDD;&#x5B58;&#x5B8C;&#x6574;&#x7684;&#x533A;&#x5757;&#x94FE;&#x526F;&#x672C;&#xFF0C;&#x5305;&#x62EC;2009&#x5E74;&#x4EE5;&#x6765;&#x6240;&#x6709;&#x6BD4;&#x7279;&#x5E01;&#x7F51;&#x7EDC;&#x4E0A;&#x53D1;&#x751F;&#x7684;&#x4EA4;&#x6613;&#x3002;&#x8BE5;&#x6570;&#x636E;&#x96C6;&#x7684;&#x5927;&#x5C0F;&#x4E3A;&#x51E0;&#x5341;gb&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x51E0;&#x5929;&#x6216;&#x51E0;&#x5468;&#x5185;&#x9012;&#x589E;&#x4E0B;&#x8F7D;&#xFF0C;&#x5177;&#x4F53;&#x53D6;&#x51B3;&#x4E8E;&#x4F60;&#x7684;cpu&#x548C;&#x7F51;&#x7EDC;&#x901F;&#x5EA6;&#x3002;&#x5728;&#x5B8C;&#x6574;&#x7684;&#x533A;&#x5757;&#x94FE;&#x6570;&#x636E;&#x96C6;&#x4E0B;&#x8F7D;&#x5B8C;&#x4E4B;&#x524D;&#xFF0C;bitcoin-core&#x5C06;&#x65E0;&#x6CD5;&#x5904;&#x7406;&#x4EA4;&#x6613;&#x6216;&#x66F4;&#x65B0;&#x8D26;&#x6237;&#x4F59;&#x989D;&#x3002;&#x786E;&#x4FDD;&#x4F60;&#x6709;&#x8DB3;&#x591F;&#x7684;&#x78C1;&#x76D8;&#x7A7A;&#x95F4;&#xFF0C;&#x5E26;&#x5BBD;&#x548C;&#x65F6;&#x95F4;&#x6765;&#x5B8C;&#x6210;&#x521D;&#x59CB;&#x540C;&#x6B65;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x914D;&#x7F6E;bitcoin-core&#xFF0C;&#x901A;&#x8FC7;&#x4E22;&#x5F03;&#x65E7;&#x5757;&#x6765;&#x51CF;&#x5C11;&#x533A;&#x5757;&#x94FE;&#x7684;&#x5927;&#x5C0F;&#x3002;&#x53C2;&#x89C1;-sample-configuration-of-a-resource-constrained-system-&#x4F46;&#x5728;&#x4E22;&#x5F03;&#x6570;&#x636E;&#x4E4B;&#x524D;&#x5B83;&#x4ECD;&#x4F1A;&#x4E0B;&#x8F7D;&#x6574;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x3002;-" class="anchor-navigation-ex-anchor" href="#--bitcoin-core&#x9ED8;&#x8BA4;&#x4FDD;&#x5B58;&#x5B8C;&#x6574;&#x7684;&#x533A;&#x5757;&#x94FE;&#x526F;&#x672C;&#xFF0C;&#x5305;&#x62EC;2009&#x5E74;&#x4EE5;&#x6765;&#x6240;&#x6709;&#x6BD4;&#x7279;&#x5E01;&#x7F51;&#x7EDC;&#x4E0A;&#x53D1;&#x751F;&#x7684;&#x4EA4;&#x6613;&#x3002;&#x8BE5;&#x6570;&#x636E;&#x96C6;&#x7684;&#x5927;&#x5C0F;&#x4E3A;&#x51E0;&#x5341;gb&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x51E0;&#x5929;&#x6216;&#x51E0;&#x5468;&#x5185;&#x9012;&#x589E;&#x4E0B;&#x8F7D;&#xFF0C;&#x5177;&#x4F53;&#x53D6;&#x51B3;&#x4E8E;&#x4F60;&#x7684;cpu&#x548C;&#x7F51;&#x7EDC;&#x901F;&#x5EA6;&#x3002;&#x5728;&#x5B8C;&#x6574;&#x7684;&#x533A;&#x5757;&#x94FE;&#x6570;&#x636E;&#x96C6;&#x4E0B;&#x8F7D;&#x5B8C;&#x4E4B;&#x524D;&#xFF0C;bitcoin-core&#x5C06;&#x65E0;&#x6CD5;&#x5904;&#x7406;&#x4EA4;&#x6613;&#x6216;&#x66F4;&#x65B0;&#x8D26;&#x6237;&#x4F59;&#x989D;&#x3002;&#x786E;&#x4FDD;&#x4F60;&#x6709;&#x8DB3;&#x591F;&#x7684;&#x78C1;&#x76D8;&#x7A7A;&#x95F4;&#xFF0C;&#x5E26;&#x5BBD;&#x548C;&#x65F6;&#x95F4;&#x6765;&#x5B8C;&#x6210;&#x521D;&#x59CB;&#x540C;&#x6B65;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x914D;&#x7F6E;bitcoin-core&#xFF0C;&#x901A;&#x8FC7;&#x4E22;&#x5F03;&#x65E7;&#x5757;&#x6765;&#x51CF;&#x5C11;&#x533A;&#x5757;&#x94FE;&#x7684;&#x5927;&#x5C0F;&#x3002;&#x53C2;&#x89C1;-sample-configuration-of-a-resource-constrained-system-&#x4F46;&#x5728;&#x4E22;&#x5F03;&#x6570;&#x636E;&#x4E4B;&#x524D;&#x5B83;&#x4ECD;&#x4F1A;&#x4E0B;&#x8F7D;&#x6574;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x3002;-"><i class="fa fa-link" aria-hidden="true"></i></a>&gt;   Bitcoin Core&#x9ED8;&#x8BA4;&#x4FDD;&#x5B58;&#x5B8C;&#x6574;&#x7684;&#x533A;&#x5757;&#x94FE;&#x526F;&#x672C;&#xFF0C;&#x5305;&#x62EC;2009&#x5E74;&#x4EE5;&#x6765;&#x6240;&#x6709;&#x6BD4;&#x7279;&#x5E01;&#x7F51;&#x7EDC;&#x4E0A;&#x53D1;&#x751F;&#x7684;&#x4EA4;&#x6613;&#x3002;&#x8BE5;&#x6570;&#x636E;&#x96C6;&#x7684;&#x5927;&#x5C0F;&#x4E3A;&#x51E0;&#x5341;GB&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x51E0;&#x5929;&#x6216;&#x51E0;&#x5468;&#x5185;&#x9012;&#x589E;&#x4E0B;&#x8F7D;&#xFF0C;&#x5177;&#x4F53;&#x53D6;&#x51B3;&#x4E8E;&#x4F60;&#x7684;CPU&#x548C;&#x7F51;&#x7EDC;&#x901F;&#x5EA6;&#x3002;&#x5728;&#x5B8C;&#x6574;&#x7684;&#x533A;&#x5757;&#x94FE;&#x6570;&#x636E;&#x96C6;&#x4E0B;&#x8F7D;&#x5B8C;&#x4E4B;&#x524D;&#xFF0C;Bitcoin Core&#x5C06;&#x65E0;&#x6CD5;&#x5904;&#x7406;&#x4EA4;&#x6613;&#x6216;&#x66F4;&#x65B0;&#x8D26;&#x6237;&#x4F59;&#x989D;&#x3002;&#x786E;&#x4FDD;&#x4F60;&#x6709;&#x8DB3;&#x591F;&#x7684;&#x78C1;&#x76D8;&#x7A7A;&#x95F4;&#xFF0C;&#x5E26;&#x5BBD;&#x548C;&#x65F6;&#x95F4;&#x6765;&#x5B8C;&#x6210;&#x521D;&#x59CB;&#x540C;&#x6B65;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x914D;&#x7F6E;Bitcoin Core&#xFF0C;&#x901A;&#x8FC7;&#x4E22;&#x5F03;&#x65E7;&#x5757;&#x6765;&#x51CF;&#x5C11;&#x533A;&#x5757;&#x94FE;&#x7684;&#x5927;&#x5C0F;&#x3002;(&#x53C2;&#x89C1; Sample configuration of a resource-constrained system), &#x4F46;&#x5728;&#x4E22;&#x5F03;&#x6570;&#x636E;&#x4E4B;&#x524D;&#x5B83;&#x4ECD;&#x4F1A;&#x4E0B;&#x8F7D;&#x6574;&#x4E2A;&#x6570;&#x636E;&#x96C6;&#x3002; </h2>
+<p>&#x5C3D;&#x7BA1;&#x5B58;&#x5728;&#x8D44;&#x6E90;&#x9650;&#x5236;&#xFF0C;&#x4ECD;&#x6709;&#x6570;&#x5343;&#x5FD7;&#x613F;&#x8005;&#x8FD0;&#x884C;&#x6BD4;&#x7279;&#x5E01;&#x8282;&#x70B9;&#x3002;&#x6709;&#x4E9B;&#x7CFB;&#x7EDF;&#x50CF;Raspberry Pi&#x4E00;&#x6837;&#x7B80;&#x5355;&#xFF08;35&#x7F8E;&#x5143;&#x7684;&#x7EB8;&#x76D2;&#x5927;&#x5C0F;&#x7684;&#x7535;&#x8111;&#xFF09;&#x3002;&#x8BB8;&#x591A;&#x5FD7;&#x613F;&#x8005;&#x8FD8;&#x5728;&#x79DF;&#x7528;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x8FD0;&#x884C;&#x6BD4;&#x7279;&#x5E01;&#x8282;&#x70B9;&#xFF0C;&#x901A;&#x5E38;&#x662F;Linux&#x7684;&#x4E00;&#x4E9B;&#x53D8;&#x4F53;&#x3002; <em>Virtual Private Server</em>&#xFF08;VPS&#xFF09;&#x6216;<em>Cloud Computing Server</em>&#x5B9E;&#x4F8B;&#x53EF;&#x7528;&#x4E8E;&#x8FD0;&#x884C;&#x6BD4;&#x7279;&#x5E01;&#x8282;&#x70B9;&#x3002;&#x8FD9;&#x4E9B;&#x670D;&#x52A1;&#x5668;&#x53EF;&#x4EE5;&#x6BCF;&#x6708;25&#x7F8E;&#x5143;&#x6216;50&#x7F8E;&#x5143;&#x7684;&#x4EF7;&#x683C;&#x4ECE;&#x5404;&#x79CD;&#x63D0;&#x4F9B;&#x5546;&#x5904;&#x83B7;&#x5F97;&#x3002;</p>
+<p>&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x8FD0;&#x884C;&#x6BD4;&#x7279;&#x5E01;&#x8282;&#x70B9;&#x5462;&#xFF1F;&#x4EE5;&#x4E0B;&#x662F;&#x4E00;&#x4E9B;&#x7406;&#x7531;:</p>
+<ul>
+<li>&#x4F60;&#x6B63;&#x5728;&#x5F00;&#x53D1;&#x6BD4;&#x7279;&#x5E01;&#x8F6F;&#x4EF6;&#xFF0C;&#x9700;&#x8981;&#x4F9D;&#x9760;&#x6BD4;&#x7279;&#x5E01;&#x8282;&#x70B9;&#x8FDB;&#x884C;&#x7F51;&#x7EDC;&#x548C;&#x533A;&#x5757;&#x94FE;&#x7684;API&#x8BBF;&#x95EE;&#x3002;</li>
+<li>&#x4F60;&#x6B63;&#x5728;&#x6784;&#x5EFA;&#x5FC5;&#x987B;&#x6839;&#x636E;&#x6BD4;&#x7279;&#x5E01;&#x7684;&#x5171;&#x8BC6;&#x89C4;&#x5219;&#x9A8C;&#x8BC1;&#x4EA4;&#x6613;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x6BD4;&#x7279;&#x5E01;&#x8F6F;&#x4EF6;&#x516C;&#x53F8;&#x901A;&#x5E38;&#x8FD0;&#x884C;&#x591A;&#x4E2A;&#x8282;&#x70B9;&#x3002;</li>
+<li>&#x4F60;&#x60F3;&#x652F;&#x6301;&#x6BD4;&#x7279;&#x5E01;&#x3002;&#x8FD0;&#x884C;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x53EF;&#x4EE5;&#x4F7F;&#x7F51;&#x7EDC;&#x66F4;&#x5F3A;&#x5927;&#xFF0C;&#x80FD;&#x591F;&#x670D;&#x52A1;&#x66F4;&#x591A;&#x7684;&#x94B1;&#x5305;&#xFF0C;&#x66F4;&#x591A;&#x7684;&#x7528;&#x6237;&#x548C;&#x66F4;&#x591A;&#x7684;&#x4EA4;&#x6613;&#x3002;</li>
+<li>&#x4F60;&#x4E0D;&#x60F3;&#x4F9D;&#x8D56;&#x4EFB;&#x4F55;&#x7B2C;&#x4E09;&#x65B9;&#x6765;&#x5904;&#x7406;&#x6216;&#x9A8C;&#x8BC1;&#x4F60;&#x7684;&#x4EA4;&#x6613;&#x3002;</li>
+</ul>
+<p>&#x5982;&#x679C;&#x4F60;&#x6B63;&#x5728;&#x9605;&#x8BFB;&#x672C;&#x4E66;&#x5E76;&#x4E14;&#x5BF9;&#x5F00;&#x53D1;&#x6BD4;&#x7279;&#x5E01;&#x8F6F;&#x4EF6;&#x611F;&#x5174;&#x8DA3;&#xFF0C;&#x90A3;&#x4E48;&#x4F60;&#x5E94;&#x8BE5;&#x8FD0;&#x884C;&#x81EA;&#x5DF1;&#x7684;&#x8282;&#x70B9;&#x3002;</p>
+<h4 id="&#x914D;&#x7F6E;bitcoin-core&#x8282;&#x70B9;"><a name="&#x914D;&#x7F6E;bitcoin-core&#x8282;&#x70B9;" class="anchor-navigation-ex-anchor" href="#&#x914D;&#x7F6E;bitcoin-core&#x8282;&#x70B9;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x914D;&#x7F6E;Bitcoin Core&#x8282;&#x70B9;</h4>
+<p>Bitcoin Core&#x5728;&#x6BCF;&#x6B21;&#x542F;&#x52A8;&#x65F6;&#x4F1A;&#x5728;&#x5176;&#x6570;&#x636E;&#x76EE;&#x5F55;&#x4E2D;&#x67E5;&#x627E;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x3002;&#x5728;&#x672C;&#x8282;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x7814;&#x7A76;&#x5404;&#x79CD;&#x914D;&#x7F6E;&#x9009;&#x9879;&#x5E76;&#x8FDB;&#x884C;&#x914D;&#x7F6E;&#x3002;&#x8981;&#x627E;&#x5230;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x8BF7;&#x5728;&#x7EC8;&#x7AEF;&#x4E2D;&#x8FD0;&#x884C; bitcoind -printtoconsole &#x5E76;&#x67E5;&#x770B;&#x524D;&#x51E0;&#x884C;&#x3002;</p>
+<pre><code>$ bitcoind -printtoconsole
+Bitcoin version v0.15.0
+Using the &apos;standard&apos; SHA256 implementation
+Using data directory /home/ubuntu/.bitcoin/
+Using config file /home/ubuntu/.bitcoin/bitcoin.conf
+...
+[a lot more debug output]
+...
+</code></pre><p>&#x786E;&#x5B9A;&#x4E86;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x4F4D;&#x7F6E;&#x4E4B;&#x540E;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x6309;Ctrl-C&#x5173;&#x95ED;&#x8BE5;&#x8282;&#x70B9;&#x3002;&#x901A;&#x5E38;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4F4D;&#x4E8E;&#x7528;&#x6237;&#x4E3B;&#x76EE;&#x5F55;&#x4E0B;&#x7684;<em>.bitcoin</em>&#x6570;&#x636E;&#x76EE;&#x5F55;&#x4E2D;&#x3002;&#x63A5;&#x4E0B;&#x6765;&#x5728;&#x7F16;&#x8F91;&#x5668;&#x4E2D;&#x6253;&#x5F00;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x3002;</p>
+<p>Bitcoin Core&#x63D0;&#x4F9B;&#x4E86;&#x8D85;&#x8FC7;100&#x79CD;&#x914D;&#x7F6E;&#x9009;&#x9879;&#xFF0C;&#x53EF;&#x4EE5;&#x4FEE;&#x6539;&#x7F51;&#x7EDC;&#x8282;&#x70B9;&#x7684;&#x884C;&#x4E3A;&#xFF0C;&#x533A;&#x5757;&#x94FE;&#x7684;&#x5B58;&#x50A8;&#x4EE5;&#x53CA;&#x8BB8;&#x591A;&#x5176;&#x4ED6;&#x65B9;&#x9762;&#x3002;&#x8981;&#x67E5;&#x770B;&#x8FD9;&#x4E9B;&#x9009;&#x9879;&#x7684;&#x5217;&#x8868;&#xFF0C;&#x8BF7;&#x8FD0;&#x884C; bitcoind --help&#xFF1A;</p>
+<pre><code>$ bitcoind --help
+Bitcoin Core Daemon version v0.15.0
+
+Usage:
+  bitcoind [options]                     Start Bitcoin Core Daemon
+
+Options:
+
+  -?
+       Print this help message and exit
+
+  -version
+       Print version and exit
+
+  -alertnotify=&lt;cmd&gt;
+       Execute command when a relevant alert is received or we see a really
+       long fork (%s in cmd is replaced by message)
+...
+[many more options]
+...
+
+  -rpcthreads=&lt;n&gt;
+       Set the number of threads to service RPC calls (default: 4)
+</code></pre><p>&#x4EE5;&#x4E0B;&#x662F;&#x4F60;&#x53EF;&#x4EE5;&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x8BBE;&#x7F6E;&#x7684;&#x4E00;&#x4E9B;&#x6700;&#x91CD;&#x8981;&#x7684;&#x9009;&#x9879;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A; bitcoind &#x7684;&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;&#xFF1A;</p>
+<ul>
+<li><p><strong>alertnotify</strong></p>
+<p>&#x8FD0;&#x884C;&#x6307;&#x5B9A;&#x7684;&#x547D;&#x4EE4;&#x6216;&#x811A;&#x672C;&#xFF0C;&#x5411;&#x8BE5;&#x8282;&#x70B9;&#x7684;&#x6240;&#x6709;&#x8005;&#x53D1;&#x9001;&#x7D27;&#x6025;&#x8B66;&#x62A5;&#xFF0C;&#x901A;&#x5E38;&#x901A;&#x8FC7;&#x7535;&#x5B50;&#x90AE;&#x4EF6;&#x7684;&#x5F62;&#x5F0F;&#x3002;</p>
+</li>
+<li><p><strong>conf</strong></p>
+<p>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x66FF;&#x4EE3;&#x4F4D;&#x7F6E;&#x3002;&#x8FD9;&#x4EC5;&#x9002;&#x7528;&#x4E8E; bitcoind &#x7684;&#x547D;&#x4EE4;&#x884C;&#x53C2;&#x6570;&#x3002;</p>
+</li>
+<li><p><strong>datadir</strong></p>
+<p>&#x653E;&#x7F6E;&#x6240;&#x6709;&#x533A;&#x5757;&#x94FE;&#x6570;&#x636E;&#x7684;&#x76EE;&#x5F55;&#x3002;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x8FD9;&#x662F;&#x4F60;&#x7684;&#x4E3B;&#x76EE;&#x5F55;&#x7684; <em>.bitcoin</em> &#x76EE;&#x5F55;&#x7684;&#x5B50;&#x76EE;&#x5F55;&#x3002;&#x786E;&#x4FDD;&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x6240;&#x5728;&#x7684;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x6709;&#x6570;GB&#x7684;&#x53EF;&#x7528;&#x7A7A;&#x95F4;&#x3002;</p>
+</li>
+<li><p><strong>prune</strong></p>
+<p>&#x901A;&#x8FC7;&#x5220;&#x9664;&#x65E7;&#x7684;&#x5757;&#xFF0C;&#x5C06;&#x78C1;&#x76D8;&#x7A7A;&#x95F4;&#x9700;&#x6C42;&#x51CF;&#x5C11;&#x5230;&#x591A;&#x5C11;MB&#x3002;&#x5728;&#x4E0D;&#x9002;&#x5408;&#x5B58;&#x653E;&#x5B8C;&#x6574;&#x533A;&#x5757;&#x94FE;&#x7684;&#x8D44;&#x6E90;&#x53D7;&#x9650;&#x8282;&#x70B9;&#x4E0A;&#x4F7F;&#x7528;&#x5B83;&#x3002;</p>
+</li>
+<li><p><strong>txindex</strong></p>
+<p>&#x7EF4;&#x62A4;&#x6240;&#x6709;&#x4EA4;&#x6613;&#x7684;&#x7D22;&#x5F15;&#x3002;&#x8FD9;&#x610F;&#x5473;&#x7740;&#xFF0C;&#x5141;&#x8BB8;&#x4F60;&#x4EE5;&#x7F16;&#x7A0B;&#x65B9;&#x5F0F;&#x901A;&#x8FC7;ID&#x68C0;&#x7D22;&#x4E00;&#x4E2A;&#x5B8C;&#x6574;&#x7684;&#x533A;&#x5757;&#x94FE;&#x526F;&#x672C;&#x7684;&#x4EFB;&#x4F55;&#x4EA4;&#x6613;&#x3002;</p>
+</li>
+<li><p><strong>dbcache</strong></p>
+<p>UTXO&#x7F13;&#x5B58;&#x7684;&#x5927;&#x5C0F;&#x3002;&#x9ED8;&#x8BA4;&#x503C;&#x662F;300MB&#x3002;&#x5728;&#x9AD8;&#x7AEF;&#x786C;&#x4EF6;&#x4E0A;&#x589E;&#x52A0;&#x8BE5;&#x503C;&#xFF0C;&#x5728;&#x4F4E;&#x7AEF;&#x786C;&#x4EF6;&#x4E0A;&#x51CF;&#x5C11;&#x8BE5;&#x503C;&#x7684;&#x5927;&#x5C0F;&#x4EE5;&#x8282;&#x7701;&#x5185;&#x5B58;&#xFF0C;&#x4F46;&#x4F1A;&#x5BFC;&#x81F4;&#x66F4;&#x591A;&#x78C1;&#x76D8;&#x5F00;&#x9500;&#x3002;</p>
+</li>
+<li><p><strong>maxconnections</strong></p>
+<p>&#x8BBE;&#x7F6E;&#x53EF;&#x4EE5;&#x4ECE;&#x6700;&#x591A;&#x591A;&#x5C11;&#x4E2A;&#x8282;&#x70B9;&#x63A5;&#x53D7;&#x8FDE;&#x63A5;&#x3002;&#x5C06;&#x9ED8;&#x8BA4;&#x503C;&#x51CF;&#x5C0F;&#x5C06;&#x51CF;&#x5C11;&#x4F60;&#x7684;&#x5E26;&#x5BBD;&#x6D88;&#x8017;&#x3002;&#x5982;&#x679C;&#x4F60;&#x6709;&#x5E26;&#x5BBD;&#x9650;&#x5236;&#x6216;&#x6309;&#x5E26;&#x5BBD;&#x652F;&#x4ED8;&#xFF0C;&#x8BF7;&#x4F7F;&#x7528;&#x6B64;&#x9009;&#x9879;&#x3002;</p>
+</li>
+<li><p><strong>maxmempool</strong></p>
+<p>&#x5C06;&#x4EA4;&#x6613;&#x5185;&#x5B58;&#x6C60;&#x7684;&#x5927;&#x5C0F;&#x8BBE;&#x7F6E;&#x4E3A;&#x591A;&#x5C11;MB&#x3002;&#x5728;&#x5185;&#x5B58;&#x53D7;&#x9650;&#x7684;&#x8282;&#x70B9;&#x4E0A;&#x4F7F;&#x7528;&#x3002;</p>
+</li>
+<li><p><strong>maxreceivebuffer/maxsendbuffer</strong></p>
+<p>&#x5C06;&#x6BCF;&#x4E2A;&#x8FDE;&#x63A5;&#x7684;&#x5185;&#x5B58;&#x7F13;&#x51B2;&#x533A;&#x9650;&#x5236;&#x4E3A;&#x591A;&#x5C11;KB&#x3002;&#x5728;&#x5185;&#x5B58;&#x53D7;&#x9650;&#x7684;&#x8282;&#x70B9;&#x4E0A;&#x4F7F;&#x7528;&#x3002;</p>
+</li>
+<li><p><strong>minrelaytxfee</strong></p>
+<p>&#x8BBE;&#x7F6E;&#x4F60;&#x613F;&#x610F;&#x4F20;&#x64AD;&#x7684;&#x4EA4;&#x6613;&#x7684;&#x6700;&#x4F4E;&#x8D39;&#x7387;&#x3002;&#x5728;&#x6B64;&#x503C;&#x4EE5;&#x4E0B;&#xFF0C;&#x4EA4;&#x6613;&#x5904;&#x7406;&#x4E3A;&#x975E;&#x6807;&#x51C6;&#x4EA4;&#x6613;&#xFF0C;&#x4ECE;&#x4EA4;&#x6613;&#x6C60;&#x4E2D;&#x62D2;&#x7EDD;&#x5E76;&#x4E14;&#x4E0D;&#x8F6C;&#x53D1;&#x3002;</p>
+</li>
+</ul>
+<p>&#x4EA4;&#x6613;&#x6570;&#x636E;&#x5E93;&#x7D22;&#x5F15;&#x548C;txindex&#x9009;&#x9879;</p>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;Bitcoin Core&#x53EA;&#x521B;&#x5EFA;&#x5305;&#x542B;&#x7528;&#x6237;&#x7684;&#x94B1;&#x5305;&#x76F8;&#x5173;&#x4EA4;&#x6613;&#x7684;&#x6570;&#x636E;&#x5E93;&#x3002;&#x5982;&#x679C;&#x4F60;&#x60F3;&#x4F7F;&#x7528; getrawtransaction &#x4E4B;&#x7C7B;&#x7684;&#x547D;&#x4EE4;&#x8BBF;&#x95EE;&#x4EFB;&#x4F55;&#x4EA4;&#x6613;&#xFF0C;(&#x53C2;&#x89C1; <a href="https://github.com/wjw465150/bitcoin_book_2nd/blob/master/&#x7B2C;&#x4E09;&#x7AE0;.asciidoc#exploring_and_decoding_transanctions" target="_blank">&#x68C0;&#x67E5;&#x5E76;&#x89E3;&#x7801;&#x4EA4;&#x6613;</a>), &#x4F60;&#x9700;&#x8981;&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x8BBE;&#x7F6E; txindex=1 &#x4EE5;&#x4F7F; Bitcoin Core &#x521B;&#x5EFA;&#x5B8C;&#x6574;&#x7684;&#x4EA4;&#x6613;&#x7D22;&#x5F15;&#x3002;&#x5982;&#x679C;&#x4F60;&#x4E00;&#x5F00;&#x59CB;&#x672A;&#x8BBE;&#x7F6E;&#x6B64;&#x9009;&#x9879;&#xFF0C;&#x5728;&#x4E4B;&#x540E;&#x8BBE;&#x7F6E;&#x5B8C;&#x6210;&#x540E;&#x9700;&#x8981;&#x4F7F;&#x7528; bitcoind -reindex &#x91CD;&#x542F;&#x5E76;&#x7B49;&#x5F85;&#x5176;&#x91CD;&#x65B0;&#x6784;&#x5EFA;&#x7D22;&#x5F15;&#x3002;</p>
+<p><a href="https://github.com/wjw465150/bitcoin_book_2nd/blob/master/&#x7B2C;&#x4E09;&#x7AE0;.asciidoc#full_index_node" target="_blank">Sample configuration of a full-index node</a> &#x5C55;&#x793A;&#x4E86;&#x5982;&#x4F55;&#x5C06;&#x524D;&#x9762;&#x7684;&#x9009;&#x9879;&#x4E0E;&#x5B8C;&#x5168;&#x7D22;&#x5F15;&#x7684;&#x8282;&#x70B9;&#x76F8;&#x7ED3;&#x5408;&#xFF0C;&#x4F5C;&#x4E3A;&#x6BD4;&#x7279;&#x5E01;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;API&#x540E;&#x7AEF;&#x8FD0;&#x884C;&#x3002;</p>
+<p>Example 1. Sample configuration of a full-index node</p>
+<pre><code>alertnotify=myemailscript.sh &quot;Alert: %s&quot;
+datadir=/lotsofspace/bitcoin
+txindex=1
+</code></pre><p><a href="https://github.com/wjw465150/bitcoin_book_2nd/blob/master/&#x7B2C;&#x4E09;&#x7AE0;.asciidoc#constrained_resources" target="_blank">Sample configuration of a resource-constrained system</a> &#x5C55;&#x793A;&#x4E86;&#x8D44;&#x6E90;&#x53D7;&#x9650;&#x8282;&#x70B9;&#x7684;&#x914D;&#x7F6E;&#x3002;</p>
+<p>Example 2. Sample configuration of a resource-constrained system</p>
+<pre><code>alertnotify=myemailscript.sh &quot;Alert: %s&quot;
+maxconnections=15
+prune=5000
+dbcache=150
+maxmempool=150
+maxreceivebuffer=2500
+maxsendbuffer=500
+</code></pre><p>&#x5728;&#x6309;&#x7167;&#x4F60;&#x9700;&#x6C42;&#x7F16;&#x8F91;&#x4E86;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E4B;&#x540E;&#xFF0C;&#x53EF;&#x4EE5;&#x8FD0;&#x884C; bitcoind -printtoconsole &#x6765;&#x6D4B;&#x8BD5;</p>
+<pre><code>$ bitcoind -printtoconsole
+
+Bitcoin version v0.15.0
+InitParameterInteraction: parameter interaction: -whitelistforcerelay=1 -&gt; setting -whitelistrelay=1
+Assuming ancestors of block 0000000000000000003b9ce759c2a087d52abc4266f8f4ebd6d768b89defa50a have valid signatures.
+Using the &apos;standard&apos; SHA256 implementation
+Default data directory /home/ubuntu/.bitcoin
+Using data directory /lotsofspace/.bitcoin
+Using config file /home/ubuntu/.bitcoin/bitcoin.conf
+Using at most 125 automatic connections (1048576 file descriptors available)
+Using 16 MiB out of 32/2 requested for signature cache, able to store 524288 elements
+Using 16 MiB out of 32/2 requested for script execution cache, able to store 524288 elements
+Using 2 threads for script verification
+HTTP: creating work queue of depth 16
+No rpcpassword set - using random cookie authentication
+Generated RPC authentication cookie /lotsofspace/.bitcoin/.cookie
+HTTP: starting 4 worker threads
+init message: Verifying wallet(s)...
+Using BerkeleyDB version Berkeley DB 4.8.30: (April  9, 2010)
+Using wallet wallet.dat
+CDBEnv::Open: LogDir=/lotsofspace/.bitcoin/database ErrorFile=/lotsofspace/.bitcoin/db.log
+scheduler thread start
+Cache configuration:
+* Using 250.0MiB for block index database
+* Using 8.0MiB for chain state database
+* Using 1742.0MiB for in-memory UTXO set (plus up to 286.1MiB of unused mempool space)
+init message: Loading block index...
+Opening LevelDB in /lotsofspace/.bitcoin/blocks/index
+Opened LevelDB successfully
+
+[... more startup messages ...]
+</code></pre><p>&#x786E;&#x8BA4;&#x914D;&#x7F6E;&#x6B63;&#x786E;&#x88AB;&#x52A0;&#x8F7D;&#x540E;&#x53EF;&#x4EE5;&#x6309;Ctrl-C&#x7ED3;&#x675F;&#x8FDB;&#x7A0B;&#x3002;</p>
+<p>&#x8981;&#x5C06;Bitcoin Core&#x4F5C;&#x4E3A;&#x540E;&#x53F0;&#x8FDB;&#x7A0B;&#x8FD0;&#x884C;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; bitcoind -daemon.</p>
+<p>&#x8981;&#x89C2;&#x5BDF;&#x8282;&#x70B9;&#x7684;&#x8FDB;&#x7A0B;&#x548C;&#x8FD0;&#x884C;&#x65F6;&#x72B6;&#x6001;&#xFF0C;&#x53EF;&#x4F7F;&#x7528; bitcoin-cli getblockchaininfo:</p>
+<pre><code>$ bitcoin-cli getblockchaininfo
+{
+  &quot;chain&quot;: &quot;main&quot;,
+  &quot;blocks&quot;: 0,
+  &quot;headers&quot;: 83999,
+  &quot;bestblockhash&quot;: &quot;000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f&quot;,
+  &quot;difficulty&quot;: 1,
+  &quot;mediantime&quot;: 1231006505,
+  &quot;verificationprogress&quot;: 3.783041623201835e-09,
+  &quot;chainwork&quot;: &quot;0000000000000000000000000000000000000000000000000000000100010001&quot;,
+  &quot;pruned&quot;: false,
+  [...]
+}
+</code></pre><p>&#x8FD9;&#x5C55;&#x793A;&#x4E86;&#x533A;&#x5757;&#x94FE;&#x9AD8;&#x5EA6;&#x4E3A;0&#x4E2A;&#x5757;&#xFF0C;&#x6709;83999&#x4E2A;&#x533A;&#x5757;&#x5934;&#x7684;&#x8282;&#x70B9;&#x3002;&#x8282;&#x70B9;&#x5148;&#x83B7;&#x53D6;&#x6700;&#x4F73;&#x94FE;&#x7684;&#x533A;&#x5757;&#x5934;&#xFF0C;&#x7136;&#x540E;&#x7EE7;&#x7EED;&#x4E0B;&#x8F7D;&#x5B8C;&#x6574;&#x5757;&#x3002;</p>
+<p>&#x5728;&#x4F60;&#x5B8C;&#x6210;&#x9009;&#x9879;&#x914D;&#x7F6E;&#x4E4B;&#x540E;&#xFF0C;&#x5E94;&#x8BE5;&#x5C06;&#x6BD4;&#x7279;&#x5E01;&#x6DFB;&#x52A0;&#x5230;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x542F;&#x52A8;&#x811A;&#x672C;&#x4E2D;&#xFF0C;&#x4EE5;&#x4FBF;&#x5B83;&#x53EF;&#x4EE5;&#x6301;&#x7EED;&#x8FD0;&#x884C;&#x5E76;&#x5728;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x91CD;&#x65B0;&#x542F;&#x52A8;&#x65F6;&#x91CD;&#x542F;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x5728; <em>contrib/init</em> &#x4E0B;&#x627E;&#x5230;&#x6BD4;&#x7279;&#x5E01;&#x6E90;&#x76EE;&#x5F55;&#x4E2D;&#x5404;&#x79CD;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x542F;&#x52A8;&#x811A;&#x672C;&#x793A;&#x4F8B;&#x4EE5;&#x53CA;&#x663E;&#x793A;&#x54EA;&#x4E2A;&#x7CFB;&#x7EDF;&#x4F7F;&#x7528;&#x54EA;&#x4E2A;&#x811A;&#x672C;&#x7684; <em>README.md</em> &#x6587;&#x4EF6;&#x3002;</p>
+<h3 id="bitcoin-core-api"><a name="bitcoin-core-api" class="anchor-navigation-ex-anchor" href="#bitcoin-core-api"><i class="fa fa-link" aria-hidden="true"></i></a>Bitcoin Core API</h3>
+<p>Bitcoin Core &#x5BA2;&#x6237;&#x7AEF;&#x5B9E;&#x73B0;&#x4E86;JSON-RPC&#x63A5;&#x53E3;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177; bitcoin-cli &#x6765;&#x8BBF;&#x95EE;&#x3002;&#x547D;&#x4EE4;&#x884C;&#x5141;&#x8BB8;&#x6211;&#x4EEC;&#x4EE5;&#x4EA4;&#x4E92;&#x7684;&#x65B9;&#x5F0F;&#x8BD5;&#x9A8C;&#x901A;&#x8FC7;API&#x65B9;&#x5F0F;&#x63D0;&#x4F9B;&#x7684;&#x529F;&#x80FD;&#x3002; &#x9996;&#x5148;&#xFF0C;&#x8C03;&#x7528; help &#x547D;&#x4EE4;&#x67E5;&#x770B;&#x53EF;&#x7528;&#x6BD4;&#x7279;&#x5E01;RPC&#x547D;&#x4EE4;&#x7684;&#x5217;&#x8868;&#xFF1A;</p>
+<pre><code>$ bitcoin-cli help
+addmultisigaddress nrequired [&quot;key&quot;,...] ( &quot;account&quot; )
+addnode &quot;node&quot; &quot;add|remove|onetry&quot;
+backupwallet &quot;destination&quot;
+createmultisig nrequired [&quot;key&quot;,...]
+createrawtransaction [{&quot;txid&quot;:&quot;id&quot;,&quot;vout&quot;:n},...] {&quot;address&quot;:amount,...}
+decoderawtransaction &quot;hexstring&quot;
+...
+...
+verifymessage &quot;bitcoinaddress&quot; &quot;signature&quot; &quot;message&quot;
+walletlock
+walletpassphrase &quot;passphrase&quot; timeout
+walletpassphrasechange &quot;oldpassphrase&quot; &quot;newpassphrase&quot;
+</code></pre><p>&#x6BCF;&#x4E2A;&#x547D;&#x4EE4;&#x90FD;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x8BB8;&#x591A;&#x53C2;&#x6570;&#x3002;&#x8981;&#x83B7;&#x5F97;&#x66F4;&#x8BE6;&#x7EC6;&#x7684;&#x53C2;&#x6570;&#x4FE1;&#x606F;&#xFF0C;&#x8BF7;&#x5728; help &#x540E;&#x6DFB;&#x52A0;&#x547D;&#x4EE4;&#x540D;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x8981;&#x67E5;&#x770B; getblockhash RPC&#x547D;&#x4EE4;&#x7684;&#x5E2E;&#x52A9;&#xFF1A;</p>
+<pre><code>$ bitcoin-cli help getblockhash
+getblockhash height
+
+Returns hash of block in best-block-chain at height provided.
+
+Arguments:
+1. height         (numeric, required) The height index
+
+Result:
+&quot;hash&quot;         (string) The block hash
+
+Examples:
+&gt; bitcoin-cli getblockhash 1000
+&gt; curl --user myusername --data-binary &apos;{&quot;jsonrpc&quot;: &quot;1.0&quot;, &quot;id&quot;:&quot;curltest&quot;, &quot;method&quot;: &quot;getblockhash&quot;, &quot;params&quot;: [1000] }&apos; -H &apos;content-type: text/plain;&apos; http://127.0.0.1:8332/
+</code></pre><p>&#x5728;&#x5E2E;&#x52A9;&#x4FE1;&#x606F;&#x7684;&#x672B;&#x5C3E;&#xFF0C;&#x4F60;&#x5C06;&#x770B;&#x5230;&#x4E24;&#x4E2A;RPC&#x547D;&#x4EE4;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x5206;&#x522B;&#x4F7F;&#x7528; bitcoin-cli &#x548C;HTTP&#x5BA2;&#x6237;&#x7AEF; curl&#x3002;&#x8FD9;&#x4E9B;&#x793A;&#x4F8B;&#x6F14;&#x793A;&#x4E86;&#x5982;&#x4F55;&#x8C03;&#x7528;&#x8BE5;&#x547D;&#x4EE4;&#x3002;&#x590D;&#x5236;&#x7B2C;&#x4E00;&#x4E2A;&#x793A;&#x4F8B;&#x5E76;&#x67E5;&#x770B;&#x7ED3;&#x679C;&#xFF1A;</p>
+<pre><code>$ bitcoin-cli getblockhash 1000
+00000000c937983704a73af28acdec37b049d214adbda81d7e2a3dd146f6ed09
+</code></pre><p>&#x7ED3;&#x679C;&#x662F;&#x4E00;&#x4E2A;&#x533A;&#x5757;&#x7684;&#x54C8;&#x5E0C;&#x503C;&#xFF0C;&#x5728;&#x4E0B;&#x9762;&#x7684;&#x7AE0;&#x8282;&#x4E2D;&#x6709;&#x66F4;&#x8BE6;&#x7EC6;&#x7684;&#x63CF;&#x8FF0;&#x3002;&#x8BE5;&#x547D;&#x4EE4;&#x5E94;&#x8BE5;&#x5728;&#x4F60;&#x7684;&#x7CFB;&#x7EDF;&#x4E0A;&#x8FD4;&#x56DE;&#x76F8;&#x540C;&#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x8868;&#x660E;&#x4F60;&#x7684;Bitcoin Core&#x8282;&#x70B9;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#xFF0C;&#x63A5;&#x53D7;&#x547D;&#x4EE4;&#xFF0C;&#x5E76;&#x4E14;&#x5C06;&#x6709;&#x5173;&#x5757;1000&#x7684;&#x4FE1;&#x606F;&#x8FD4;&#x56DE;&#x7ED9;&#x4F60;&#x3002;</p>
+<p>&#x5728;&#x63A5;&#x4E0B;&#x6765;&#x7684;&#x90E8;&#x5206;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x6F14;&#x793A;&#x4E00;&#x4E9B;&#x975E;&#x5E38;&#x6709;&#x7528;&#x7684;RPC&#x547D;&#x4EE4;&#x53CA;&#x5176;&#x9884;&#x671F;&#x7684;&#x8F93;&#x51FA;&#x3002;</p>
+<h4 id="&#x83B7;&#x5F97;bitcoin-core&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x72B6;&#x6001;&#x4FE1;&#x606F;"><a name="&#x83B7;&#x5F97;bitcoin-core&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x72B6;&#x6001;&#x4FE1;&#x606F;" class="anchor-navigation-ex-anchor" href="#&#x83B7;&#x5F97;bitcoin-core&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x72B6;&#x6001;&#x4FE1;&#x606F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x83B7;&#x5F97;Bitcoin Core&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x72B6;&#x6001;&#x4FE1;&#x606F;</h4>
+<p>Bitcoin Core &#x901A;&#x8FC7; JSON-RPC &#x63A5;&#x53E3;&#x63D0;&#x4F9B;&#x4E0D;&#x540C;&#x6A21;&#x5757;&#x7684;&#x72B6;&#x6001;&#x62A5;&#x544A;&#x3002;&#x6700;&#x91CD;&#x8981;&#x7684;&#x547D;&#x4EE4;&#x5305;&#x62EC; getblockchaininfo, getmempoolinfo, getnetworkinfo &#x548C; getwalletinfo&#x3002;</p>
+<p>&#x6BD4;&#x7279;&#x5E01;&#x7684; getblockchaininfo RPC &#x547D;&#x4EE4;&#x4E4B;&#x524D;&#x5DF2;&#x7ECF;&#x4ECB;&#x7ECD;&#x4E86;&#x3002;getnetworkinfo &#x547D;&#x4EE4;&#x7528;&#x4E8E;&#x5C55;&#x793A;&#x6BD4;&#x7279;&#x5E01;&#x7F51;&#x7EDC;&#x8282;&#x70B9;&#x7684;&#x57FA;&#x672C;&#x72B6;&#x6001;&#x4FE1;&#x606F;&#x3002;&#x4F7F;&#x7528; bitcoin-cli &#x8C03;&#x7528;:</p>
+<pre><code>$ bitcoin-cli getnetworkinfo
+  &quot;version&quot;: 150000,
+  &quot;subversion&quot;: &quot;/Satoshi:0.15.0/&quot;,
+  &quot;protocolversion&quot;: 70015,
+  &quot;localservices&quot;: &quot;000000000000000d&quot;,
+  &quot;localrelay&quot;: true,
+  &quot;timeoffset&quot;: 0,
+  &quot;networkactive&quot;: true,
+  &quot;connections&quot;: 8,
+  &quot;networks&quot;: [
+    ...
+    detailed information about all networks (ipv4, ipv6 or onion)
+    ...
+  ],
+  &quot;relayfee&quot;: 0.00001000,
+  &quot;incrementalfee&quot;: 0.00001000,
+  &quot;localaddresses&quot;: [
+  ],
+  &quot;warnings&quot;: &quot;&quot;
+}
+</code></pre><p>&#x6570;&#x636E;&#x901A;&#x8FC7;JSON&#x683C;&#x5F0F;&#x8FD4;&#x56DE;,&#x53EF;&#x4EE5;&#x88AB;&#x6240;&#x6709;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#x5904;&#x7406;&#xFF0C;&#x800C;&#x4E14;&#x662F;&#x53EF;&#x8BFB;&#x7684;&#x3002;&#x5728;&#x8FD9;&#x4E9B;&#x6570;&#x636E;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x6BD4;&#x7279;&#x5E01;&#x8F6F;&#x4EF6;&#x5BA2;&#x6237;&#x7AEF;&#x7248;&#x672C;&#x53F7;&#xFF08;150000&#xFF09;&#x548C;&#x6BD4;&#x7279;&#x5E01;&#x534F;&#x8BAE;&#x7248;&#x672C;&#x53F7;&#xFF08;70015&#xFF09;&#xFF0C;&#x5F53;&#x524D;&#x7684;&#x8FDE;&#x63A5;&#x6570;&#xFF08;8&#xFF09;&#xFF0C;&#x4EE5;&#x53CA;&#x6709;&#x5173;&#x6BD4;&#x7279;&#x5E01;&#x7F51;&#x7EDC;&#x7684;&#x5404;&#x79CD;&#x4FE1;&#x606F;&#x4E0E;&#x6B64;&#x5BA2;&#x6237;&#x7AEF;&#x76F8;&#x5173;&#x7684;&#x8BBE;&#x7F6E;&#x3002;</p>
+<hr>
+<h2 id="-bitcoind&#x5BA2;&#x6237;&#x7AEF;&#x6765;&#x8BF4;&#xFF0C;&#x5B83;&#x9700;&#x8981;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#xFF08;&#x6216;&#x8BB8;&#x8D85;&#x8FC7;&#x4E00;&#x5929;&#x7684;&#x65F6;&#x95F4;&#xFF09;&#x8D76;&#x4E0A;&#x5F53;&#x524D;&#x533A;&#x5757;&#x94FE;&#x9AD8;&#x5EA6;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4ECE;&#x5176;&#x4ED6;&#x6BD4;&#x7279;&#x5E01;&#x5BA2;&#x6237;&#x7AEF;&#x4E0B;&#x8F7D;&#x533A;&#x5757;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;-getblockchaininfo-&#x6765;&#x67E5;&#x770B;&#x5176;&#x8FDB;&#x5EA6;&#xFF0C;&#x4EE5;&#x67E5;&#x770B;&#x5DF2;&#x77E5;&#x533A;&#x5757;&#x7684;&#x6570;&#x91CF;&#x3002;-"><a name="-bitcoind&#x5BA2;&#x6237;&#x7AEF;&#x6765;&#x8BF4;&#xFF0C;&#x5B83;&#x9700;&#x8981;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#xFF08;&#x6216;&#x8BB8;&#x8D85;&#x8FC7;&#x4E00;&#x5929;&#x7684;&#x65F6;&#x95F4;&#xFF09;&#x8D76;&#x4E0A;&#x5F53;&#x524D;&#x533A;&#x5757;&#x94FE;&#x9AD8;&#x5EA6;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4ECE;&#x5176;&#x4ED6;&#x6BD4;&#x7279;&#x5E01;&#x5BA2;&#x6237;&#x7AEF;&#x4E0B;&#x8F7D;&#x533A;&#x5757;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;-getblockchaininfo-&#x6765;&#x67E5;&#x770B;&#x5176;&#x8FDB;&#x5EA6;&#xFF0C;&#x4EE5;&#x67E5;&#x770B;&#x5DF2;&#x77E5;&#x533A;&#x5757;&#x7684;&#x6570;&#x91CF;&#x3002;-" class="anchor-navigation-ex-anchor" href="#-bitcoind&#x5BA2;&#x6237;&#x7AEF;&#x6765;&#x8BF4;&#xFF0C;&#x5B83;&#x9700;&#x8981;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#xFF08;&#x6216;&#x8BB8;&#x8D85;&#x8FC7;&#x4E00;&#x5929;&#x7684;&#x65F6;&#x95F4;&#xFF09;&#x8D76;&#x4E0A;&#x5F53;&#x524D;&#x533A;&#x5757;&#x94FE;&#x9AD8;&#x5EA6;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4ECE;&#x5176;&#x4ED6;&#x6BD4;&#x7279;&#x5E01;&#x5BA2;&#x6237;&#x7AEF;&#x4E0B;&#x8F7D;&#x533A;&#x5757;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;-getblockchaininfo-&#x6765;&#x67E5;&#x770B;&#x5176;&#x8FDB;&#x5EA6;&#xFF0C;&#x4EE5;&#x67E5;&#x770B;&#x5DF2;&#x77E5;&#x533A;&#x5757;&#x7684;&#x6570;&#x91CF;&#x3002;-"><i class="fa fa-link" aria-hidden="true"></i></a>&gt;  bitcoind+&#x5BA2;&#x6237;&#x7AEF;&#x6765;&#x8BF4;&#xFF0C;&#x5B83;&#x9700;&#x8981;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#xFF08;&#x6216;&#x8BB8;&#x8D85;&#x8FC7;&#x4E00;&#x5929;&#x7684;&#x65F6;&#x95F4;&#xFF09;&#x201C;&#x8D76;&#x4E0A;&#x201D;&#x5F53;&#x524D;&#x533A;&#x5757;&#x94FE;&#x9AD8;&#x5EA6;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4ECE;&#x5176;&#x4ED6;&#x6BD4;&#x7279;&#x5E01;&#x5BA2;&#x6237;&#x7AEF;&#x4E0B;&#x8F7D;&#x533A;&#x5757;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; +getblockchaininfo &#x6765;&#x67E5;&#x770B;&#x5176;&#x8FDB;&#x5EA6;&#xFF0C;&#x4EE5;&#x67E5;&#x770B;&#x5DF2;&#x77E5;&#x533A;&#x5757;&#x7684;&#x6570;&#x91CF;&#x3002; </h2>
+<h4 id="&#x68C0;&#x67E5;&#x5E76;&#x89E3;&#x7801;&#x4EA4;&#x6613;"><a name="&#x68C0;&#x67E5;&#x5E76;&#x89E3;&#x7801;&#x4EA4;&#x6613;" class="anchor-navigation-ex-anchor" href="#&#x68C0;&#x67E5;&#x5E76;&#x89E3;&#x7801;&#x4EA4;&#x6613;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x68C0;&#x67E5;&#x5E76;&#x89E3;&#x7801;&#x4EA4;&#x6613;</h4>
+<p>&#x547D;&#x4EE4;: getrawtransaction, decoderawtransaction</p>
+<p>&#x5728; <a href="https://github.com/wjw465150/bitcoin_book_2nd/blob/master/&#x7B2C;&#x4E09;&#x7AE0;.asciidoc#cup_of_coffee" target="_blank">[cup_of_coffee]</a> &#x7684;&#x6848;&#x4F8B;&#x4E2D;, Alice&#x4ECE;Bob&#x2019;s Cafe&#x8D2D;&#x4E70;&#x4E86;&#x4E00;&#x676F;&#x5496;&#x5561;&#x3002;&#x5979;&#x7684;&#x4EA4;&#x6613;ID (txid)&#x4E3A;+0627052b6f28912f2703066a912ea577f2ce4da4caa5a5fbd8a57286c345c2f2+&#x3002;&#x8BA9;&#x6211;&#x4EEC;&#x4F7F;&#x7528;API&#xFF0C;&#x901A;&#x8FC7;&#x4EA4;&#x6613;ID&#x6765;&#x68C0;&#x7D22;&#x548C;&#x67E5;&#x770B;&#x8FD9;&#x7B14;&#x4EA4;&#x6613;&#xFF1A;</p>
+<pre><code>$ bitcoin-cli getrawtransaction 0627052b6f28912f2703066a912ea577f2ce4da4caa5a&#x21B5;
+5fbd8a57286c345c2f2
+
+0100000001186f9f998a5aa6f048e51dd8419a14d8a0f1a8a2836dd734d2804fe65fa35779000&#x21B5;
+000008b483045022100884d142d86652a3f47ba4746ec719bbfbd040a570b1deccbb6498c75c4&#x21B5;
+ae24cb02204b9f039ff08df09cbe9f6addac960298cad530a863ea8f53982c09db8f6e3813014&#x21B5;
+10484ecc0d46f1918b30928fa0e4ed99f16a0fb4fde0735e7ade8416ab9fe423cc54123363767&#x21B5;
+89d172787ec3457eee41c04f4938de5cc17b4a10fa336a8d752adfffffffff0260e3160000000&#x21B5;
+0001976a914ab68025513c3dbd2f7b92a94e0581f5d50f654e788acd0ef8000000000001976a9&#x21B5;
+147f9b1a7fb68d60c536c2fd8aeaa53a8f3cc025a888ac00000000
+</code></pre><hr>
+<h2 id="--&#x5728;&#x4EA4;&#x6613;&#x786E;&#x8BA4;&#x4E4B;&#x524D;&#xFF0C;&#x4EA4;&#x6613;id&#x4E0D;&#x662F;&#x53EF;&#x4FE1;&#x7684;&#x3002;&#x533A;&#x5757;&#x94FE;&#x4E2D;&#x6CA1;&#x6709;&#x4EA4;&#x6613;&#x7684;&#x54C8;&#x5E0C;&#x503C;&#x5E76;&#x4E0D;&#x610F;&#x5473;&#x7740;&#x4EA4;&#x6613;&#x672A;&#x5904;&#x7406;&#x3002;&#x8FD9;&#x88AB;&#x79F0;&#x4E3A;&#x4EA4;&#x6613;&#x53EF;&#x953B;&#x6027;&#xFF08;transaction-malleability&#xFF09;&#xFF0C;&#x56E0;&#x4E3A;&#x5728;&#x533A;&#x5757;&#x4E2D;&#x786E;&#x8BA4;&#x4E4B;&#x524D;&#xFF0C;&#x4EA4;&#x6613;&#x7684;&#x54C8;&#x5E0C;&#x53EF;&#x4EE5;&#x88AB;&#x4FEE;&#x6539;&#x3002;&#x786E;&#x8BA4;&#x540E;&#xFF0C;txid-&#x662F;&#x4E0D;&#x53EF;&#x53D8;&#x7684;&#x548C;&#x53EF;&#x4FE1;&#x7684;&#x3002;-"><a name="--&#x5728;&#x4EA4;&#x6613;&#x786E;&#x8BA4;&#x4E4B;&#x524D;&#xFF0C;&#x4EA4;&#x6613;id&#x4E0D;&#x662F;&#x53EF;&#x4FE1;&#x7684;&#x3002;&#x533A;&#x5757;&#x94FE;&#x4E2D;&#x6CA1;&#x6709;&#x4EA4;&#x6613;&#x7684;&#x54C8;&#x5E0C;&#x503C;&#x5E76;&#x4E0D;&#x610F;&#x5473;&#x7740;&#x4EA4;&#x6613;&#x672A;&#x5904;&#x7406;&#x3002;&#x8FD9;&#x88AB;&#x79F0;&#x4E3A;&#x4EA4;&#x6613;&#x53EF;&#x953B;&#x6027;&#xFF08;transaction-malleability&#xFF09;&#xFF0C;&#x56E0;&#x4E3A;&#x5728;&#x533A;&#x5757;&#x4E2D;&#x786E;&#x8BA4;&#x4E4B;&#x524D;&#xFF0C;&#x4EA4;&#x6613;&#x7684;&#x54C8;&#x5E0C;&#x53EF;&#x4EE5;&#x88AB;&#x4FEE;&#x6539;&#x3002;&#x786E;&#x8BA4;&#x540E;&#xFF0C;txid-&#x662F;&#x4E0D;&#x53EF;&#x53D8;&#x7684;&#x548C;&#x53EF;&#x4FE1;&#x7684;&#x3002;-" class="anchor-navigation-ex-anchor" href="#--&#x5728;&#x4EA4;&#x6613;&#x786E;&#x8BA4;&#x4E4B;&#x524D;&#xFF0C;&#x4EA4;&#x6613;id&#x4E0D;&#x662F;&#x53EF;&#x4FE1;&#x7684;&#x3002;&#x533A;&#x5757;&#x94FE;&#x4E2D;&#x6CA1;&#x6709;&#x4EA4;&#x6613;&#x7684;&#x54C8;&#x5E0C;&#x503C;&#x5E76;&#x4E0D;&#x610F;&#x5473;&#x7740;&#x4EA4;&#x6613;&#x672A;&#x5904;&#x7406;&#x3002;&#x8FD9;&#x88AB;&#x79F0;&#x4E3A;&#x4EA4;&#x6613;&#x53EF;&#x953B;&#x6027;&#xFF08;transaction-malleability&#xFF09;&#xFF0C;&#x56E0;&#x4E3A;&#x5728;&#x533A;&#x5757;&#x4E2D;&#x786E;&#x8BA4;&#x4E4B;&#x524D;&#xFF0C;&#x4EA4;&#x6613;&#x7684;&#x54C8;&#x5E0C;&#x53EF;&#x4EE5;&#x88AB;&#x4FEE;&#x6539;&#x3002;&#x786E;&#x8BA4;&#x540E;&#xFF0C;txid-&#x662F;&#x4E0D;&#x53EF;&#x53D8;&#x7684;&#x548C;&#x53EF;&#x4FE1;&#x7684;&#x3002;-"><i class="fa fa-link" aria-hidden="true"></i></a>&gt;   &#x5728;&#x4EA4;&#x6613;&#x786E;&#x8BA4;&#x4E4B;&#x524D;&#xFF0C;&#x4EA4;&#x6613;ID&#x4E0D;&#x662F;&#x53EF;&#x4FE1;&#x7684;&#x3002;&#x533A;&#x5757;&#x94FE;&#x4E2D;&#x6CA1;&#x6709;&#x4EA4;&#x6613;&#x7684;&#x54C8;&#x5E0C;&#x503C;&#x5E76;&#x4E0D;&#x610F;&#x5473;&#x7740;&#x4EA4;&#x6613;&#x672A;&#x5904;&#x7406;&#x3002;&#x8FD9;&#x88AB;&#x79F0;&#x4E3A;&#x201C;&#x4EA4;&#x6613;&#x53EF;&#x953B;&#x6027;&#xFF08;transaction malleability&#xFF09;&#x201D;&#xFF0C;&#x56E0;&#x4E3A;&#x5728;&#x533A;&#x5757;&#x4E2D;&#x786E;&#x8BA4;&#x4E4B;&#x524D;&#xFF0C;&#x4EA4;&#x6613;&#x7684;&#x54C8;&#x5E0C;&#x53EF;&#x4EE5;&#x88AB;&#x4FEE;&#x6539;&#x3002;&#x786E;&#x8BA4;&#x540E;&#xFF0C;txid &#x662F;&#x4E0D;&#x53EF;&#x53D8;&#x7684;&#x548C;&#x53EF;&#x4FE1;&#x7684;&#x3002; </h2>
+<p>getrawtransaction &#x547D;&#x4EE4;&#x4EE5;&#x5341;&#x516D;&#x8FDB;&#x5236;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5E8F;&#x5217;&#x5316;&#x7684;&#x4EA4;&#x6613;&#x3002;&#x5C06;&#x5B83;&#x4F5C;&#x4E3A; decoderawtransaction &#x547D;&#x4EE4;&#x7684;&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x89E3;&#x7801;&#xFF1A;</p>
+<pre><code>$ bitcoin-cli decoderawtransaction 0100000001186f9f998a5aa6f048e51dd8419a14d8&#x21B5;
+a0f1a8a2836dd734d2804fe65fa35779000000008b483045022100884d142d86652a3f47ba474&#x21B5;
+6ec719bbfbd040a570b1deccbb6498c75c4ae24cb02204b9f039ff08df09cbe9f6addac960298&#x21B5;
+cad530a863ea8f53982c09db8f6e381301410484ecc0d46f1918b30928fa0e4ed99f16a0fb4fd&#x21B5;
+e0735e7ade8416ab9fe423cc5412336376789d172787ec3457eee41c04f4938de5cc17b4a10fa&#x21B5;
+336a8d752adfffffffff0260e31600000000001976a914ab68025513c3dbd2f7b92a94e0581f5&#x21B5;
+d50f654e788acd0ef8000000000001976a9147f9b1a7fb68d60c536c2fd8aeaa53a8f3cc025a8&#x21B5;
+88ac00000000
+{
+  &quot;txid&quot;: &quot;0627052b6f28912f2703066a912ea577f2ce4da4caa5a5fbd8a57286c345c2f2&quot;,
+  &quot;size&quot;: 258,
+  &quot;version&quot;: 1,
+  &quot;locktime&quot;: 0,
+  &quot;vin&quot;: [
+    {
+      &quot;txid&quot;: &quot;7957a35fe64f80d234d76d83a2...8149a41d81de548f0a65a8a999f6f18&quot;,
+      &quot;vout&quot;: 0,
+      &quot;scriptSig&quot;: {
+        &quot;asm&quot;:&quot;3045022100884d142d86652a3f47ba4746ec719bbfbd040a570b1decc...&quot;,
+        &quot;hex&quot;:&quot;483045022100884d142d86652a3f47ba4746ec719bbfbd040a570b1de...&quot;
+      },
+      &quot;sequence&quot;: 4294967295
+    }
+  ],
+  &quot;vout&quot;: [
+    {
+      &quot;value&quot;: 0.01500000,
+      &quot;n&quot;: 0,
+      &quot;scriptPubKey&quot;: {
+        &quot;asm&quot;: &quot;OP_DUP OP_HASH160 ab68...5f654e7 OP_EQUALVERIFY OP_CHECKSIG&quot;,
+        &quot;hex&quot;: &quot;76a914ab68025513c3dbd2f7b92a94e0581f5d50f654e788ac&quot;,
+        &quot;reqSigs&quot;: 1,
+        &quot;type&quot;: &quot;pubkeyhash&quot;,
+        &quot;addresses&quot;: [
+          &quot;1GdK9UzpHBzqzX2A9JFP3Di4weBwqgmoQA&quot;
+        ]
+      }
+    },
+    {
+      &quot;value&quot;: 0.08450000,
+      &quot;n&quot;: 1,
+      &quot;scriptPubKey&quot;: {
+        &quot;asm&quot;: &quot;OP_DUP OP_HASH160 7f9b1a...025a8 OP_EQUALVERIFY OP_CHECKSIG&quot;,
+        &quot;hex&quot;: &quot;76a9147f9b1a7fb68d60c536c2fd8aeaa53a8f3cc025a888ac&quot;,
+        &quot;reqSigs&quot;: 1,
+        &quot;type&quot;: &quot;pubkeyhash&quot;,
+        &quot;addresses&quot;: [
+          &quot;1Cdid9KFAaatwczBwBttQcwXYCpvK8h7FK&quot;
+        ]
+      }
+    }
+  ]
+}
+</code></pre><p>&#x89E3;&#x7801;&#x540E;&#x7684;&#x4EA4;&#x6613;&#x5C55;&#x793A;&#x4E86;&#x6B64;&#x4EA4;&#x6613;&#x7684;&#x6240;&#x6709;&#x7EC4;&#x6210;&#x90E8;&#x5206;&#xFF0C;&#x5305;&#x62EC;&#x4EA4;&#x6613;&#x7684;&#x8F93;&#x5165;&#x548C;&#x8F93;&#x51FA;&#x3002;&#x6211;&#x4EEC;&#x770B;&#x5230;&#x5C06;15mBitcoin&#x8F6C;&#x5230;&#x65B0;&#x5730;&#x5740;&#x7684;&#x4EA4;&#x6613;&#x4F7F;&#x7528;&#x4E86;&#x4E00;&#x4E2A;&#x8F93;&#x5165;&#x5E76;&#x4EA7;&#x751F;&#x4E86;&#x4E24;&#x4E2A;&#x8F93;&#x51FA;&#x3002;&#x6B64;&#x4EA4;&#x6613;&#x7684;&#x8F93;&#x5165;&#x662F;&#x4EE5;&#x524D;&#x786E;&#x8BA4;&#x7684;&#x4EA4;&#x6613;&#x7684;&#x8F93;&#x51FA;&#xFF08;vin&#x4E2D;&#x7684; txid &#xFF0C;&#x4EE5; 7957a35fe &#x5F00;&#x5934; &#xFF09;&#x3002;&#x4E24;&#x4E2A;&#x8F93;&#x51FA;&#x5BF9;&#x5E94;&#x4E8E;15mBitcoin&#x7684;&#x6B3E;&#x9879;&#xFF0C;&#x548C;&#x8FD4;&#x56DE;&#x7ED9;&#x53D1;&#x9001;&#x8005;&#x7684;&#x96F6;&#x94B1;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4F7F;&#x7528; getrawtransaction &#x68C0;&#x67E5;&#x6B64;&#x4EA4;&#x6613;&#x4E2D;&#x5F15;&#x7528;&#x7684;&#x524D;&#x4E00;&#x4E2A;&#x4EA4;&#x6613;&#x7684; txid &#x6765;&#x8FDB;&#x4E00;&#x6B65;&#x63A2;&#x7D22;&#x533A;&#x5757;&#x94FE;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x8FFD;&#x8E2A;&#x4E00;&#x7B14;&#x6BD4;&#x7279;&#x5E01;&#x5728;&#x4E0D;&#x540C;&#x6240;&#x6709;&#x8005;&#x5730;&#x5740;&#x4E4B;&#x95F4;&#x4F20;&#x9012;&#x7684;&#x4EA4;&#x6613;&#x94FE;&#x3002;</p>
+<h4 id="&#x68C0;&#x67E5;&#x533A;&#x5757;"><a name="&#x68C0;&#x67E5;&#x533A;&#x5757;" class="anchor-navigation-ex-anchor" href="#&#x68C0;&#x67E5;&#x533A;&#x5757;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x68C0;&#x67E5;&#x533A;&#x5757;</h4>
+<p>&#x547D;&#x4EE4;: getblock, getblockhash</p>
+<p>&#x68C0;&#x67E5;&#x533A;&#x5757;&#x4E0E;&#x68C0;&#x67E5;&#x4EA4;&#x6613;&#x7C7B;&#x4F3C;&#x3002;&#x533A;&#x5757;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5757;<em>&#x9AD8;&#x5EA6;&#xFF08;height&#xFF09;</em>&#x6216;&#x5757;<em>&#x54C8;&#x5E0C;&#xFF08;hash&#xFF09;</em>&#x6765;&#x5F15;&#x7528;&#x3002;&#x9996;&#x5148;&#xFF0C;&#x6211;&#x4EEC;&#x6839;&#x636E;&#x9AD8;&#x5EA6;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x5757;&#x3002;&#x5728; <a href="https://github.com/wjw465150/bitcoin_book_2nd/blob/master/&#x7B2C;&#x4E09;&#x7AE0;.asciidoc#cup_of_coffee" target="_blank">[cup_of_coffee]</a> &#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x770B;&#x5230;Alice&#x7684;&#x4EA4;&#x6613;&#x5305;&#x542B;&#x5728;&#x533A;&#x5757;#277316&#x4E2D;&#x3002;</p>
+<p>&#x5C06;&#x5757;&#x9AD8;&#x5EA6;&#x4F5C;&#x4E3A; getblockhash &#x547D;&#x4EE4;&#x7684;&#x53C2;&#x6570;, &#xFF0C;&#x5C06;&#x8FD4;&#x56DE;&#x533A;&#x5757;&#x7684;&#x54C8;&#x5E0C;&#x503C;:</p>
+<pre><code>$ bitcoin-cli getblockhash 277316
+0000000000000001b6b9a13b095e96db41c4a928b97ef2d944a9b31b2cc7bdc4
+</code></pre><p>&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x77E5;&#x9053;Alice&#x7684;&#x4EA4;&#x6613;&#x88AB;&#x5305;&#x542B;&#x5728;&#x54EA;&#x4E2A;&#x5757;&#x4E2D;&#x4E86;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; getblock &#x547D;&#x4EE4;&#xFF0C;&#x4F20;&#x9012;&#x533A;&#x5757;&#x54C8;&#x5E0C;&#x503C;&#x6765;&#x67E5;&#x8BE2;&#x8BE5;&#x5757;&#x3002;</p>
+<pre><code>$ bitcoin-cli getblock 0000000000000001b6b9a13b095e96db41c4a928b97ef2d944a9b3&#x21B5;
+1b2cc7bdc4
+{
+  &quot;hash&quot;: &quot;0000000000000001b6b9a13b095e96db41c4a928b97ef2d944a9b31b2cc7bdc4&quot;,
+  &quot;confirmations&quot;: 37371,
+  &quot;size&quot;: 218629,
+  &quot;height&quot;: 277316,
+  &quot;version&quot;: 2,
+  &quot;merkleroot&quot;: &quot;c91c008c26e50763e9f548bb8b2fc323735f73577effbc55502c51eb4cc7cf2e&quot;,
+  &quot;tx&quot;: [
+    &quot;d5ada064c6417ca25c4308bd158c34b77e1c0eca2a73cda16c737e7424afba2f&quot;,
+    &quot;b268b45c59b39d759614757718b9918caf0ba9d97c56f3b91956ff877c503fbe&quot;,
+    &quot;04905ff987ddd4cfe603b03cfb7ca50ee81d89d1f8f5f265c38f763eea4a21fd&quot;,
+    &quot;32467aab5d04f51940075055c2f20bbd1195727c961431bf0aff8443f9710f81&quot;,
+    &quot;561c5216944e21fa29dd12aaa1a45e3397f9c0d888359cb05e1f79fe73da37bd&quot;,
+[... hundreds of transactions ...]
+    &quot;78b300b2a1d2d9449b58db7bc71c3884d6e0579617e0da4991b9734cef7ab23a&quot;,
+    &quot;6c87130ec283ab4c2c493b190c20de4b28ff3caf72d16ffa1ce3e96f2069aca9&quot;,
+    &quot;6f423dbc3636ef193fd8898dfdf7621dcade1bbe509e963ffbff91f696d81a62&quot;,
+    &quot;802ba8b2adabc5796a9471f25b02ae6aeee2439c679a5c33c4bbcee97e081196&quot;,
+    &quot;eaaf6a048588d9ad4d1c092539bd571dd8af30635c152a3b0e8b611e67d1a1af&quot;,
+    &quot;e67abc6bd5e2cac169821afc51b207127f42b92a841e976f9b752157879ba8bd&quot;,
+    &quot;d38985a6a1bfd35037cb7776b2dc86797abbb7a06630f5d03df2785d50d5a2ac&quot;,
+    &quot;45ea0a3f6016d2bb90ab92c34a7aac9767671a8a84b9bcce6c019e60197c134b&quot;,
+    &quot;c098445d748ced5f178ef2ff96f2758cbec9eb32cb0fc65db313bcac1d3bc98f&quot;
+  ],
+  &quot;time&quot;: 1388185914,
+  &quot;mediantime&quot;: 1388183675,
+  &quot;nonce&quot;: 924591752,
+  &quot;bits&quot;: &quot;1903a30c&quot;,
+  &quot;difficulty&quot;: 1180923195.258026,
+  &quot;chainwork&quot;: &quot;000000000000000000000000000000000000000000000934695e92aaf53afa1a&quot;,
+  &quot;previousblockhash&quot;: &quot;0000000000000002a7bbd25a417c0374cc55261021e8a9ca74442b01284f0569&quot;,
+  &quot;nextblockhash&quot;: &quot;000000000000000010236c269dd6ed714dd5db39d36b33959079d78dfd431ba7&quot;
+}
+</code></pre><p>&#x8FD9;&#x4E2A;&#x533A;&#x5757;&#x5305;&#x542B; 419 &#x7B14;&#x4EA4;&#x6613;&#xFF0C;&#x7B2C;64&#x4E2A;&#x4EA4;&#x6613;&#xFF08;0627052b...&#xFF09;&#x662F;Alice&#x7684;&#x4EA4;&#x6613;&#x3002;height &#x5B57;&#x6BB5;&#x544A;&#x8BC9;&#x6211;&#x4EEC;&#x5B83;&#x662F;&#x533A;&#x5757;&#x94FE;&#x4E2D;&#x7684;&#x7B2C;277316&#x4E2A;&#x533A;&#x5757;&#x3002;</p>
+<h4 id="&#x4F7F;&#x7528;bitcoin-core&#x7684;&#x7F16;&#x7A0B;&#x63A5;&#x53E3;"><a name="&#x4F7F;&#x7528;bitcoin-core&#x7684;&#x7F16;&#x7A0B;&#x63A5;&#x53E3;" class="anchor-navigation-ex-anchor" href="#&#x4F7F;&#x7528;bitcoin-core&#x7684;&#x7F16;&#x7A0B;&#x63A5;&#x53E3;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4F7F;&#x7528;Bitcoin Core&#x7684;&#x7F16;&#x7A0B;&#x63A5;&#x53E3;</h4>
+<p>bitcoin-cli &#x52A9;&#x624B;&#x5BF9;&#x4E8E;&#x63A2;&#x7D22;&#x6BD4;&#x7279;&#x5E01;&#x6838;&#x5FC3;API&#x548C;&#x6D4B;&#x8BD5;&#x529F;&#x80FD;&#x975E;&#x5E38;&#x6709;&#x7528;&#x3002;&#x4F46;API&#x7684;&#x91CD;&#x8981;&#x529F;&#x80FD;&#x662F;&#x4EE5;&#x7F16;&#x7A0B;&#x65B9;&#x5F0F;&#x8BBF;&#x95EE;&#x3002;&#x5728;&#x672C;&#x8282;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x6F14;&#x793A;&#x5982;&#x4F55;&#x901A;&#x8FC7;&#x53E6;&#x4E00;&#x4E2A;&#x7A0B;&#x5E8F;&#x8BBF;&#x95EE;&#x6BD4;&#x7279;&#x5E01;&#x6838;&#x5FC3;&#x3002;</p>
+<p>Bitcoin Core&#x7684;API&#x662F;JSON-RPC&#x63A5;&#x53E3;. JSON&#x4EE3;&#x8868;JavaScript Object Notation&#xFF0C;&#x662F;&#x4E00;&#x79CD;&#x975E;&#x5E38;&#x65B9;&#x4FBF;&#x4EBA;&#x7C7B;&#x548C;&#x7A0B;&#x5E8F;&#x9605;&#x8BFB;&#x7684;&#x6570;&#x636E;&#x683C;&#x5F0F;&#x3002;RPC&#x4EE3;&#x8868;&#x8FDC;&#x7A0B;&#x8FC7;&#x7A0B;&#x8C03;&#x7528;&#xFF0C;&#x8FD9;&#x610F;&#x5473;&#x7740;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x534F;&#x8BAE;&#x8C03;&#x7528;&#x8FDC;&#x7A0B;&#xFF08;&#x5728;&#x6BD4;&#x7279;&#x5E01;&#x6838;&#x5FC3;&#x8282;&#x70B9;&#x4E0A;&#x7684;&#xFF09;&#x51FD;&#x6570;&#x3002;&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x7F51;&#x7EDC;&#x534F;&#x8BAE;&#x662F;HTTP&#x6216;HTTPS&#xFF08;&#x7528;&#x4E8E;&#x52A0;&#x5BC6;&#x8FDE;&#x63A5;&#xFF09;&#x3002;</p>
+<p>&#x5F53;&#x6211;&#x4EEC;&#x4F7F;&#x7528; bitcoin-cli &#x547D;&#x4EE4;&#x83B7;&#x53D6;&#x547D;&#x4EE4;&#x5E2E;&#x52A9;&#x65F6;&#xFF0C;&#x5B83;&#x5411;&#x6211;&#x4EEC;&#x5C55;&#x793A;&#x4E86;&#x4F7F;&#x7528; curl&#xFF08;&#x5E38;&#x7528;&#x7684;&#x547D;&#x4EE4;&#x884C;HTTP&#x5BA2;&#x6237;&#x7AEF;&#xFF09;&#x6784;&#x9020;JSON-RPC&#x8C03;&#x7528;&#x7684;&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre><code>$ curl --user myusername --data-binary &apos;{&quot;jsonrpc&quot;: &quot;1.0&quot;, &quot;id&quot;:&quot;curltest&quot;, &quot;method&quot;: &quot;getblockchaininfo&quot;, &quot;params&quot;: [] }&apos; -H &apos;content-type: text/plain;&apos; http://127.0.0.1:8332/
+</code></pre><p>&#x6B64;&#x547D;&#x4EE4;&#x8868;&#x793A; curl &#x5411;&#x672C;&#x5730;&#x4E3B;&#x673A;&#xFF08;127.0.0.1&#xFF09;&#x63D0;&#x4EA4;HTTP&#x8BF7;&#x6C42;&#xFF0C;&#x8FDE;&#x63A5;&#x5230;&#x9ED8;&#x8BA4;&#x7684;&#x6BD4;&#x7279;&#x5E01;&#x7AEF;&#x53E3;&#xFF08;8332&#xFF09;&#xFF0C;&#x5E76;&#x4F7F;&#x7528; text/plain &#x7F16;&#x7801;&#x4E3A; getblockchaininfo &#x65B9;&#x6CD5;&#x63D0;&#x4EA4; jsonrpc &#x8BF7;&#x6C42;&#x3002;</p>
+<p>&#x4F60;&#x53EF;&#x80FD;&#x4F1A;&#x6CE8;&#x610F;&#x5230;curl&#x4F1A;&#x8981;&#x6C42;&#x51ED;&#x8BC1;&#x968F;&#x8BF7;&#x6C42;&#x4E00;&#x8D77;&#x53D1;&#x9001;&#x3002; Bitcoin Core&#x5728;&#x6BCF;&#x6B21;&#x542F;&#x52A8;&#x65F6;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x968F;&#x673A;&#x5BC6;&#x7801;&#xFF0C;&#x5E76;&#x5C06;&#x5176;&#x653E;&#x7F6E;&#x5728;&#x540D;&#x79F0;&#x4E3A; .cookie &#x7684;&#x6570;&#x636E;&#x76EE;&#x5F55;&#x4E2D;&#x3002; bitcoin-cli &#x52A9;&#x624B;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x6570;&#x636E;&#x76EE;&#x5F55;&#x8BFB;&#x53D6;&#x6B64;&#x5BC6;&#x7801;&#x6587;&#x4EF6;&#x3002;&#x540C;&#x6837;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x590D;&#x5236;&#x5BC6;&#x7801;&#x5E76;&#x5C06;&#x5176;&#x4F20;&#x9012;&#x7ED9;curl&#xFF08;&#x6216;&#x4EFB;&#x4F55;&#x66F4;&#x9AD8;&#x7EA7;&#x522B;&#x7684;Bitcoin Core RPC&#x5305;&#x88C5;&#x5668;&#xFF09;&#x3002;&#x6216;&#x8005;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Bitcoin Core&#x6E90;&#x7801;&#x76EE;&#x5F55;&#x4E2D;&#x7684; <em>./share/rpcuser/rpcuser.py</em> &#x4E2D;&#x63D0;&#x4F9B;&#x7684;&#x52A9;&#x624B;&#x7A0B;&#x5E8F;&#x811A;&#x672C;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x9759;&#x6001;&#x5BC6;&#x7801;&#x3002;</p>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x6B63;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x7A0B;&#x5E8F;&#x4E2D;&#x4F7F;&#x7528;HTTP&#x5E93;&#x6765;&#x5B9E;&#x73B0;JSON-RPC&#x8C03;&#x7528;&#xFF0C;&#x7C7B;&#x4F3C;&#x4E8E;&#x524D;&#x9762;&#x7684; curl &#x793A;&#x4F8B;&#x3002;</p>
+<p>&#x7136;&#x800C;&#xFF0C;&#x5927;&#x591A;&#x6570;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#x90FD;&#x6709;&#x4E00;&#x4E9B;&#x201C;&#x5305;&#x88C5;&#x201D;&#x4E86;&#x6BD4;&#x7279;&#x5E01;&#x6838;&#x5FC3;API&#x7684;&#x5E93;&#xFF0C;&#x7B80;&#x4FBF;&#x5F88;&#x591A;&#x3002;&#x6211;&#x4EEC;&#x5C06;&#x4F7F;&#x7528; python-bitcoinlib &#x5E93;&#x6765;&#x7B80;&#x5316;API&#x8BBF;&#x95EE;&#x3002;&#x4F60;&#x9700;&#x8981;&#x6709;&#x4E00;&#x4E2A;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#x7684;Bitcoin Core&#x5B9E;&#x4F8B;&#xFF0C;&#x7528;&#x4E8E;&#x8FDB;&#x884C;JSON-RPC&#x8C03;&#x7528;&#x3002;</p>
+<p><a href="https://github.com/wjw465150/bitcoin_book_2nd/blob/master/&#x7B2C;&#x4E09;&#x7AE0;.asciidoc#rpc_example" target="_blank">Running getblockchaininfo via Bitcoin Core&#x2019;s JSON-RPC API</a> &#x4E2D;&#x7684;Python&#x811A;&#x672C;&#x8C03;&#x7528; getblockchaininfo &#x5E76;&#x6253;&#x5370;&#x8FD4;&#x56DE;&#x6570;&#x636E;&#x4E2D;&#x7684;&#x533A;&#x5757;&#x4E2A;&#x6570;&#x3002;</p>
+<p>Example 3. Running getblockchaininfo via Bitcoin Core&#x2019;s JSON-RPC API</p>
+<pre><code>link:code/rpc_example.py[]
+</code></pre><p>&#x8FD0;&#x884C;&#x5B83;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x4E0B;&#x9762;&#x7684;&#x7ED3;&#x679C;:</p>
+<pre><code>$ python rpc_example.py
+394075
+</code></pre><p>&#x5B83;&#x6807;&#x660E;&#x672C;&#x5730;&#x7684;Bitcoin Core&#x8282;&#x70B9;&#x5728;&#x5176;&#x533A;&#x5757;&#x94FE;&#x4E2D;&#x6709;394075&#x4E2A;&#x533A;&#x5757;&#x3002;</p>
+<p>&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x4F7F;&#x7528; getrawtransaction &#x548C; decodetransaction &#x8C03;&#x7528;&#x6765;&#x68C0;&#x7D22;Alice&#x7684;&#x5496;&#x5561;&#x4EA4;&#x6613;&#x7EC6;&#x8282;&#x3002;&#x5728;<a href="https://github.com/wjw465150/bitcoin_book_2nd/blob/master/&#x7B2C;&#x4E09;&#x7AE0;.asciidoc#rpc_transaction" target="_blank">Retrieving a transaction and iterating its outputs</a>&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x68C0;&#x7D22;Alice&#x7684;&#x4EA4;&#x6613;&#x5E76;&#x5217;&#x51FA;&#x4EA4;&#x6613;&#x7684;&#x8F93;&#x51FA;&#x3002;&#x5BF9;&#x4E8E;&#x6BCF;&#x4E2A;&#x8F93;&#x51FA;&#xFF0C;&#x6211;&#x4EEC;&#x663E;&#x793A;&#x6536;&#x4EF6;&#x4EBA;&#x5730;&#x5740;&#x548C;&#x503C;&#x3002;&#x63D0;&#x9192;&#x4E00;&#x4E0B;&#xFF0C;Alice&#x7684;&#x4EA4;&#x6613;&#x6709;&#x4E00;&#x4E2A;&#x652F;&#x4ED8;&#x7ED9;Bob&#x2019;s Cafe&#x7684;&#x8F93;&#x51FA;&#x548C;&#x4E00;&#x4E2A;&#x8FD4;&#x56DE;&#x7ED9;Alice&#x7684;&#x627E;&#x96F6;&#x8F93;&#x51FA;&#x3002;</p>
+<p>Example 4. Retrieving a transaction and iterating its outputs</p>
+<pre><code>link:code/rpc_transaction.py[]
+</code></pre><p>&#x8FD0;&#x884C;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code>$ python rpc_transaction.py
+([u&apos;1GdK9UzpHBzqzX2A9JFP3Di4weBwqgmoQA&apos;], Decimal(&apos;0.01500000&apos;))
+([u&apos;1Cdid9KFAaatwczBwBttQcwXYCpvK8h7FK&apos;], Decimal(&apos;0.08450000&apos;))
+</code></pre><p>&#x524D;&#x9762;&#x7684;&#x4E24;&#x4E2A;&#x4F8B;&#x5B50;&#x90FD;&#x5F88;&#x7B80;&#x5355;&#x3002;&#x4F60;&#x5E76;&#x4E0D;&#x9700;&#x8981;&#x5199;&#x7A0B;&#x5E8F;&#x6765;&#x8FD0;&#x884C;&#x5B83;&#x4EEC;&#xFF1B;&#x4F60;&#x53EF;&#x4EE5;&#x8F7B;&#x677E;&#x4F7F;&#x7528; bitcoin-cli &#x52A9;&#x624B;&#x3002;&#x7136;&#x800C;&#xFF0C;&#x4E0B;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#x9700;&#x8981;&#x51E0;&#x767E;&#x6B21;RPC&#x8C03;&#x7528;&#xFF0C;&#x66F4;&#x6E05;&#x695A;&#x5730;&#x8BF4;&#x660E;&#x4E86;&#x7F16;&#x7A0B;&#x63A5;&#x53E3;&#x7684;&#x4F5C;&#x7528;&#x3002;</p>
+<p>&#x5728; <a href="https://github.com/wjw465150/bitcoin_book_2nd/blob/master/&#x7B2C;&#x4E09;&#x7AE0;.asciidoc#rpc_block" target="_blank">Retrieving a block and adding all the transaction outputs</a> &#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x9996;&#x5148;&#x68C0;&#x7D22;&#x7B2C;277316&#x4E2A;&#x533A;&#x5757;&#xFF0C;&#x7136;&#x540E;&#x4F7F;&#x7528;&#x4EA4;&#x6613;ID&#x68C0;&#x7D22;&#x533A;&#x5757;&#x5185;419&#x4E2A;&#x4EA4;&#x6613;&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x3002;&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x6211;&#x4EEC;&#x904D;&#x5386;&#x6BCF;&#x7B14;&#x4EA4;&#x6613;&#x7684;&#x8F93;&#x51FA;&#x5E76;&#x7D2F;&#x52A0;&#x8D77;&#x6765;&#x3002;</p>
+<p>Example 5. Retrieving a block and adding all the transaction outputs</p>
+<pre><code>link:code/rpc_block.py[]
+</code></pre><p>&#x8FD0;&#x884C;&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code>$ python rpc_block.py
+
+(&apos;Total value in block: &apos;, Decimal(&apos;10322.07722534&apos;))
+</code></pre><p>&#x6211;&#x4EEC;&#x7684;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#x8BA1;&#x7B97;&#x51FA;&#x6B64;&#x533A;&#x5757;&#x7684;&#x603B;&#x4EF7;&#x503C;&#x4E3A;10322.07722534 BTC&#xFF08;&#x5305;&#x62EC;25BTC&#x5956;&#x52B1;&#x548C;0.0909BTC&#x8D39;&#x7528;&#xFF09;&#x3002;&#x901A;&#x8FC7;&#x5728;&#x533A;&#x5757;&#x6D4F;&#x89C8;&#x5668;&#x4E2D;&#x641C;&#x7D22;&#x54C8;&#x5E0C;&#x6216;&#x9AD8;&#x5EA6;&#xFF0C;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x6BD4;&#x8F83;&#x3002;&#x4E00;&#x4E9B;&#x533A;&#x5757;&#x6D4F;&#x89C8;&#x5668;&#x62A5;&#x544A;&#x4E0D;&#x5305;&#x62EC;&#x5956;&#x52B1;&#x548C;&#x6392;&#x9664;&#x8D39;&#x7528;&#x7684;&#x603B;&#x4EF7;&#x503C;&#xFF0C;&#x770B;&#x770B;&#x4F60;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#x5DEE;&#x5F02;&#x3002;</p>
+<h3 id="&#x53EF;&#x9009;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x3001;&#x7A0B;&#x5E8F;&#x5E93;&#x548C;&#x5DE5;&#x5177;&#x5305;"><a name="&#x53EF;&#x9009;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x3001;&#x7A0B;&#x5E8F;&#x5E93;&#x548C;&#x5DE5;&#x5177;&#x5305;" class="anchor-navigation-ex-anchor" href="#&#x53EF;&#x9009;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x3001;&#x7A0B;&#x5E8F;&#x5E93;&#x548C;&#x5DE5;&#x5177;&#x5305;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x53EF;&#x9009;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x3001;&#x7A0B;&#x5E8F;&#x5E93;&#x548C;&#x5DE5;&#x5177;&#x5305;</h3>
+<p>&#x6BD4;&#x7279;&#x5E01;&#x751F;&#x6001;&#x7CFB;&#x7EDF;&#x4E2D;&#x6709;&#x8BB8;&#x591A;&#x53EF;&#x9009;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#xFF0C;&#x7A0B;&#x5E8F;&#x5E93;&#x548C;&#x5DE5;&#x5177;&#x5305;&#xFF0C;&#x751A;&#x81F3;&#x662F;&#x5B8C;&#x6574;&#x8282;&#x70B9;&#x7684;&#x5B9E;&#x73B0;&#x3002;&#x5B83;&#x4EEC;&#x4EE5;&#x5404;&#x79CD;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#x5B9E;&#x73B0;&#xFF0C;&#x4E3A;&#x7A0B;&#x5E8F;&#x5458;&#x63D0;&#x4F9B;&#x5176;&#x9996;&#x9009;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#x7684;&#x539F;&#x751F;&#x63A5;&#x53E3;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x5217;&#x51FA;&#x4E86;&#x4E00;&#x4E9B;&#xFF1A;</p>
+<h4 id="cc"><a name="cc" class="anchor-navigation-ex-anchor" href="#cc"><i class="fa fa-link" aria-hidden="true"></i></a>C/C++</h4>
+<ul>
+<li><p><a href="https://github.com/bitcoin/bitcoin" target="_blank">Bitcoin Core</a></p>
+<p>&#x6BD4;&#x7279;&#x5E01;&#x7684;&#x53C2;&#x8003;&#x5B9E;&#x73B0;</p>
+</li>
+<li><p><a href="https://github.com/libbitcoin/libbitcoin" target="_blank">libbitcoin</a></p>
+<p>&#x8DE8;&#x5E73;&#x53F0;&#x7684;C++&#x5F00;&#x53D1;&#x5DE5;&#x5177;&#xFF0C;&#x8282;&#x70B9;&#x548C;&#x5171;&#x8BC6;&#x51FD;&#x6570;&#x5E93;</p>
+</li>
+<li><p><a href="https://github.com/libbitcoin/libbitcoin-explorer" target="_blank">bitcoin explorer</a></p>
+<p>Libbitcoin&#x7684;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;</p>
+</li>
+<li><p><a href="https://github.com/jgarzik/picocoin" target="_blank">picocoin</a></p>
+<p>Jeff Garzik&#x5199;&#x7684;C&#x8BED;&#x97F3;&#x7684;&#x8F7B;&#x91CF;&#x7EA7;&#x6BD4;&#x7279;&#x5E01;&#x5BA2;&#x6237;&#x7AEF;&#x5E93;</p>
+</li>
+</ul>
+<h4 id="javascript"><a name="javascript" class="anchor-navigation-ex-anchor" href="#javascript"><i class="fa fa-link" aria-hidden="true"></i></a>JavaScript</h4>
+<ul>
+<li><p><a href="http://bcoin.io/" target="_blank">bcoin</a></p>
+<p>&#x5E26;&#x6709;API&#x7684;&#x6A21;&#x5757;&#x5316;&#xFF0C;&#x53EF;&#x6269;&#x5C55;&#x7684;&#x5B8C;&#x6574;&#x8282;&#x70B9;&#x5B9E;&#x73B0;</p>
+</li>
+<li><p><a href="https://bitcore.io/" target="_blank">Bitcore</a></p>
+<p>Bitpay&#x63D0;&#x4F9B;&#x7684;&#x5B8C;&#x6574;&#x8282;&#x70B9;&#xFF0C;API&#x548C;&#x7A0B;&#x5E8F;&#x5E93;</p>
+</li>
+<li><p><a href="https://github.com/bitcoinjs/bitcoinjs-lib" target="_blank">BitcoinJS</a></p>
+<p>&#x7528;&#x4E8E;node.js&#x548C;&#x6D4F;&#x89C8;&#x5668;&#x7684;&#x7EAF;JavaScript&#x6BD4;&#x7279;&#x5E01;&#x5E93;</p>
+</li>
+</ul>
+<h4 id="java"><a name="java" class="anchor-navigation-ex-anchor" href="#java"><i class="fa fa-link" aria-hidden="true"></i></a>Java</h4>
+<ul>
+<li><p><a href="https://bitcoinj.github.io/" target="_blank">bitcoinj</a></p>
+<p>Java&#x7248;&#x5B8C;&#x6574;&#x8282;&#x70B9;&#x5BA2;&#x6237;&#x7AEF;&#x5E93;</p>
+</li>
+<li><p><a href="https://bitsofproof.com/" target="_blank">Bits of Proof (BOP)</a></p>
+<p>&#x6BD4;&#x7279;&#x5E01;&#x7684;Java&#x4F01;&#x4E1A;&#x7EA7;&#x5B9E;&#x73B0;</p>
+</li>
+</ul>
+<h4 id="php"><a name="php" class="anchor-navigation-ex-anchor" href="#php"><i class="fa fa-link" aria-hidden="true"></i></a>PHP</h4>
+<ul>
+<li><p><a href="https://github.com/bit-wasp/bitcoin-php" target="_blank">bitwasp/bitcoin</a></p>
+<p>PHP&#x6BD4;&#x7279;&#x5E01;&#x5E93;, &#x548C;&#x76F8;&#x5173;&#x7684;&#x9879;&#x76EE;</p>
+</li>
+</ul>
+<h4 id="python"><a name="python" class="anchor-navigation-ex-anchor" href="#python"><i class="fa fa-link" aria-hidden="true"></i></a>Python</h4>
+<ul>
+<li><p><a href="https://github.com/petertodd/python-bitcoinlib" target="_blank">python-bitcoinlib</a></p>
+<p>Python&#x6BD4;&#x7279;&#x5E01;&#x5E93;&#xFF0C;&#x5171;&#x8BC6;&#x5E93;&#xFF0C;&#x548C;Peter Todd&#x5199;&#x7684;&#x8282;&#x70B9;</p>
+</li>
+<li><p><a href="https://github.com/richardkiss/pycoin" target="_blank">pycoin</a></p>
+<p>Richard Kiss&#x5199;&#x7684;Python&#x6BD4;&#x7279;&#x5E01;&#x5E93;</p>
+</li>
+<li><p><a href="https://github.com/vbuterin/pybitcointools" target="_blank">pybitcointools</a></p>
+<p>Vitalik Buterin&#x5199;&#x7684;Python&#x6BD4;&#x7279;&#x5E01;&#x5E93;</p>
+</li>
+</ul>
+<h4 id="ruby"><a name="ruby" class="anchor-navigation-ex-anchor" href="#ruby"><i class="fa fa-link" aria-hidden="true"></i></a>Ruby</h4>
+<ul>
+<li><p><a href="https://github.com/sinisterchipmunk/bitcoin-client" target="_blank">bitcoin-client</a></p>
+<p>Ruby&#x5C01;&#x88C5;&#x7684;JSON-RPC API</p>
+</li>
+</ul>
+<h4 id="go"><a name="go" class="anchor-navigation-ex-anchor" href="#go"><i class="fa fa-link" aria-hidden="true"></i></a>Go</h4>
+<ul>
+<li><p><a href="https://github.com/btcsuite/btcd" target="_blank">btcd</a></p>
+<p>Go&#x8BED;&#x8A00;&#x7684;&#x5B8C;&#x6574;&#x8282;&#x70B9;&#x5BA2;&#x6237;&#x7AEF;</p>
+</li>
+</ul>
+<h4 id="rust"><a name="rust" class="anchor-navigation-ex-anchor" href="#rust"><i class="fa fa-link" aria-hidden="true"></i></a>Rust</h4>
+<ul>
+<li><p><a href="https://github.com/apoelstra/rust-bitcoin" target="_blank">rust-bitcoin</a></p>
+<p>&#x7528;&#x4E8E;&#x5E8F;&#x5217;&#x5316;&#xFF0C;&#x89E3;&#x6790;&#x548C;API&#x8C03;&#x7528;&#x7684;Rust&#x6BD4;&#x7279;&#x5E01;&#x5E93;</p>
+</li>
+</ul>
+<h4 id="c"><a name="c" class="anchor-navigation-ex-anchor" href="#c"><i class="fa fa-link" aria-hidden="true"></i></a>C</h4>
+<ul>
+<li><p><a href="https://github.com/MetacoSA/NBitcoin" target="_blank">NBitcoin</a></p>
+<p>.NET&#x6846;&#x67B6;&#x7684;&#x7EFC;&#x5408;&#x6BD4;&#x7279;&#x5E01;&#x5E93;</p>
+</li>
+</ul>
+<h4 id="objective-c"><a name="objective-c" class="anchor-navigation-ex-anchor" href="#objective-c"><i class="fa fa-link" aria-hidden="true"></i></a>Objective-C</h4>
+<ul>
+<li><p><a href="https://github.com/oleganza/CoreBitcoin" target="_blank">CoreBitcoin</a></p>
+<p>&#x4E3A;ObjC&#x548C;Swift&#x63D0;&#x4F9B;&#x7684;&#x6BD4;&#x7279;&#x5E01;&#x5DE5;&#x5177;&#x5305;</p>
+</li>
+</ul>
+<p>&#x8FD8;&#x6709;&#x5404;&#x79CD;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#x7684;&#x5E93;&#x5B58;&#x5728;&#xFF0C;&#x8FD8;&#x6709;&#x66F4;&#x591A;&#x7684;&#x5E93;&#x5728;&#x5F00;&#x53D1;&#x3002; </p>
+<footer class="page-footer"><span class="copyright">Copyright &#xA9; WS 2019 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2019-11-01 13:50:56
+</span></footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="04第二章.html#花费比特币" class="navigation navigation-prev " aria-label="Previous page: 花费比特币">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="05第三章.html#比特币开发环境" class="navigation navigation-next " aria-label="Next page: 比特币开发环境">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Bitcoin Core：参考实现","level":"6.1","depth":1,"next":{"title":"比特币开发环境","level":"6.1.1","depth":2,"anchor":"#比特币开发环境","path":"05第三章.md","ref":"05第三章.md#比特币开发环境","articles":[]},"previous":{"title":"花费比特币","level":"5.1.6","depth":2,"anchor":"#花费比特币","path":"04第二章.md","ref":"04第二章.md#花费比特币","articles":[]},"dir":"ltr"},"config":{"plugins":["github@^2.0.0","edit-link@^2.0.2","anchors@^0.7.1","include-codeblock@^3.0.2","splitter@^0.0.8","tbfed-pagefooter@^0.0.1","expandable-chapters-small@^0.1.7","anchor-navigation-ex@0.1.8","book-summary-scroll-position-saver","-lunr","-search","search-plus"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright © WS 2019","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"github":{"url":"https://github.com/wjw465150/GeodeUserGuide"},"book-summary-scroll-position-saver":{},"splitter":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"isRewritePageTitle":false,"tocLevel1Icon":"fa fa-hand-o-right","tocLevel2Icon":"fa fa-hand-o-right","tocLevel3Icon":"fa fa-hand-o-right"},"expandable-chapters-small":{},"include-codeblock":{"check":false,"edit":true,"fixlang":false,"lang":"","template":"ace","theme":"chrome","unindent":true},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"label":"编辑此页面","base":"https://github.com/wjw465150/GeodeUserGuide/edit/master"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{},"search-plus":{}},"theme":"default","author":"WS","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Groovy_Recipes(Groovy食谱)","language":"zh-hans","gitbook":"*","description":"Groovy_Recipes(Groovy食谱)"},"file":{"path":"05第三章.md","mtime":"2019-11-01T05:50:56.026Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-11-01T08:32:08.891Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-book-summary-scroll-position-saver/book-summary-scroll-position-saver.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
